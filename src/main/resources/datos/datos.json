@@ -1,0 +1,77 @@
+[
+{
+    "idUser": "6355bd84fc13ae7d8f000001",
+    "nombre": "Juan",
+    "apellidoPaterno": "Pérez",
+    "apellidoMaterno": "García",
+    "email": "juan.perez@example.com",
+    "pwd": "hashedpassword123",
+    "telefono": "1234567890",
+    "domicilio": {
+      "calle": "Av. Reforma",
+      "noExt": 123,
+      "noInt": 45,
+      "cp": 11000,
+      "ciudad": "Ciudad de México",
+      "estado": "CDMX"
+    },
+    "fechaAlta": "2023-01-15T00:00:00Z",
+    "fechaNacimiento": "1990-05-20T00:00:00Z",
+    "estatus": "Activo",
+    "salario": 30000.50,
+    "nss": "12345678901",
+    "rfc": "PERJ900520HDF",
+    "noCuenta": "1234567890123456",
+    "rol": "6355bd84fc13ae7d8f000010"
+  },
+  {
+    "idUser": "6355bd84fc13ae7d8f000002",
+    "nombre": "María",
+    "apellidoPaterno": "López",
+    "apellidoMaterno": "Ramírez",
+    "email": "maria.lopez@example.com",
+    "pwd": "hashedpassword456",
+    "telefono": "0987654321",
+    "domicilio": {
+      "calle": "Calle de la Paz",
+      "noExt": 678,
+      "noInt": 2,
+      "cp": 45000,
+      "ciudad": "Guadalajara",
+      "estado": "Jalisco"
+    },
+    "fechaAlta": "2022-07-10T00:00:00Z",
+    "fechaNacimiento": "1985-03-14T00:00:00Z",
+    "estatus": "Activo",
+    "salario": 45000.75,
+    "nss": "10987654321",
+    "rfc": "LOPM850314GTX",
+    "noCuenta": "0987654321098765",
+    "rol": "6355bd84fc13ae7d8f000011"
+  },
+  {
+    "idUser": "6355bd84fc13ae7d8f000003",
+    "nombre": "Carlos",
+    "apellidoPaterno": "Hernández",
+    "apellidoMaterno": "Morales",
+    "email": "carlos.hernandez@example.com",
+    "pwd": "hashedpassword789",
+    "telefono": "1122334455",
+    "domicilio": {
+      "calle": "Blvd. Independencia",
+      "noExt": 200,
+      "noInt": 10,
+      "cp": 37000,
+      "ciudad": "León",
+      "estado": "Guanajuato"
+    },
+    "fechaAlta": "2024-04-20T00:00:00Z",
+    "fechaNacimiento": "1992-11-25T00:00:00Z",
+    "estatus": "Activo",
+    "salario": 38000.00,
+    "nss": "11223344556",
+    "rfc": "HERM921125AB2",
+    "noCuenta": "1122334455667788",
+    "rol": "6355bd84fc13ae7d8f000012"
+  }
+]
