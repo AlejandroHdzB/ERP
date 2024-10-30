@@ -73,5 +73,55 @@
     "rfc": "HERM921125AB2",
     "noCuenta": "1122334455667788",
     "rol": "6355bd84fc13ae7d8f000012"
+  },
+  {
+    "idUser": "6355bd84fc13ae7d8f000004",
+    "nombre": "Ana",
+    "apellidoPaterno": "Martínez",
+    "apellidoMaterno": "Sánchez",
+    "email": "ana.martinez@example.com",
+    "pwd": "hashedpassword111",
+    "telefono": "2233445566",
+    "domicilio": {
+      "calle": "Av. Universidad",
+      "noExt": 123,
+      "noInt": 12,
+      "cp": 70000,
+      "ciudad": "Monterrey",
+      "estado": "Nuevo León"
+    },
+    "fechaAlta": "2023-08-01T00:00:00Z",
+    "fechaNacimiento": "1995-08-12T00:00:00Z",
+    "estatus": "Activo",
+    "salario": 32000.00,
+    "nss": "22334455667",
+    "rfc": "MARA950812PD2",
+    "noCuenta": "2233445566778899",
+    "rol": "6355bd84fc13ae7d8f000013"
+  },
+  {
+    "idUser": "6355bd84fc13ae7d8f000005",
+    "nombre": "Luis",
+    "apellidoPaterno": "Gómez",
+    "apellidoMaterno": "Torres",
+    "email": "luis.gomez@example.com",
+    "pwd": "hashedpassword222",
+    "telefono": "3344556677",
+    "domicilio": {
+      "calle": "Calle Hidalgo",
+      "noExt": 567,
+      "noInt": 9,
+      "cp": 64000,
+      "ciudad": "Tijuana",
+      "estado": "Baja California"
+    },
+    "fechaAlta": "2022-11-15T00:00:00Z",
+    "fechaNacimiento": "1988-02-22T00:00:00Z",
+    "estatus": "Activo",
+    "salario": 40000.50,
+    "nss": "33445566778",
+    "rfc": "GOTL880222C35",
+    "noCuenta": "3344556677889911",
+    "rol": "6355bd84fc13ae7d8f000014"
   }
 ]
