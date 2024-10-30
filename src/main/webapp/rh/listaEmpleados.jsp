@@ -9,40 +9,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Empleados</title>
 
-    <!-- Estilos y scripts de DataTables -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
     <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: Arial, sans-serif;
-            margin-top: 20px;
+        body {
+            background-color: #ECF0F1;
+            font-family: 'Arial', sans-serif;
         }
 
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid #2C3E50;
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #343a40;
+        }
+
+        .container {
+            background: #ECF0F1;
+        }
+
+        #Tabla_Contenedor {
+            margin-top: 1%;
+            background: #ECF0F1;
+        }
+
+        #example {
+            margin: 10px auto;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         th {
-            background-color: #2C3E50; /* Azul Marino */
-            color: #ECF0F1;           /* Gris Oscuro */
-            font-weight: bold;
-        }
-
-        tr:nth-child(even) {
-            background-color: #ECF0F1; /* Gris Oscuro para filas alternadas */
-        }
-
-        tr:hover {
-            background-color: #BDC3C7; /* Un tono más claro para hover */
+            background-color: #2C3E50;
+            color: white;
+            padding: 10px;
         }
 
         td {
-            color: #2C3E50; /* Azul Marino para el texto de las celdas */
+            background-color: white;
+            padding: 10px;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        tr:hover td {
+            background-color: #e9ecef;
+        }
+
+        .dataTables_wrapper {
+            padding: 10px;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .search-container {
+            margin: 0px 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-container input {
+            width: 300px;
+            margin-left: 10px;
         }
 
         .btn-accion {
@@ -136,7 +173,7 @@
 
         // Función para redirigir a la página de edición
         function editarUsuario(idUser) {
-            window.location.href = 'editarEmpleado.jsp?idUser=' + idUser;
+            window.location.href = 'editarEmpleado?idUser=' + idUser;
         }
     </script>
 </body>

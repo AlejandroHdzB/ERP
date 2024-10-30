@@ -1,8 +1,12 @@
-com\cloudcomputing\erp\servlets\listaEmpleados.class
-com\cloudcomputing\erp\services\EmpleadoService.class
+com\cloudcomputing\erp\utils\ContabilidadMapper.class
 com\cloudcomputing\erp\dto\EmpleadoDTO$Domicilio.class
-com\cloudcomputing\erp\servlets\editarEmpleado.class
+com\cloudcomputing\erp\services\ContabilidadService.class
 com\cloudcomputing\erp\dto\EmpleadoDTO.class
+com\cloudcomputing\erp\dto\ContabilidadDTO.class
+com\cloudcomputing\erp\utils\EmpleadoMapper.class
+com\cloudcomputing\erp\servlets\listaEmpleados.class
+com\cloudcomputing\erp\servlets\listaTransacciones.class
+com\cloudcomputing\erp\services\EmpleadoService.class
+com\cloudcomputing\erp\servlets\editarEmpleado.class
 com\cloudcomputing\erp\JakartaRestConfiguration.class
 com\cloudcomputing\erp\resources\JakartaEE91Resource.class
-com\cloudcomputing\erp\utils\EmpleadoMapper.class

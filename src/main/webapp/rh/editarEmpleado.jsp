@@ -3,7 +3,7 @@
 
 <%
     // Obtener el objeto EmpleadoDTO del request (cargado previamente en el servlet)
-    EmpleadoDTO usuario = (EmpleadoDTO) request.getAttribute("usuario");
+    EmpleadoDTO usuario = (EmpleadoDTO) request.getAttribute("empleado");
     if (usuario == null) {
         usuario = new EmpleadoDTO(); // Evitar errores si no hay datos
     }

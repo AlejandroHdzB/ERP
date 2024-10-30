@@ -28,7 +28,7 @@ public class EmpleadoMapper {
                 byte[] buffer = new byte[is.available()];
                 is.read(buffer);
                 String jsonContent = new String(buffer, StandardCharsets.UTF_8);
-                logger.log(Level.INFO, "Contenido del JSON: {0}", jsonContent);
+                //logger.log(Level.INFO, "Contenido del JSON: {0}", jsonContent);
 
                 try {
                     // Convertir el JSON en un array de EmpleadoDTO usando Gson
