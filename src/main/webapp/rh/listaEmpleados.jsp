@@ -45,8 +45,26 @@
             color: #2C3E50; /* Azul Marino para el texto de las celdas */
         }
 
-        table.display thead tr {
-            border-bottom: 2px solid #2C3E50; /* Borde inferior más grueso en el encabezado */
+        .btn-accion {
+            padding: 5px 10px;
+            margin: 2px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #ECF0F1;
+            font-size: 14px;
+        }
+
+        .btn-nomina {
+            background-color: #3498DB; /* Azul Claro */
+        }
+
+        .btn-eliminar {
+            background-color: #E74C3C; /* Rojo */
+        }
+
+        .btn-editar {
+            background-color: #2ECC71; /* Verde */
         }
     </style>
 </head>
@@ -64,6 +82,7 @@
                 <th>Teléfono</th>
                 <th>Salario</th>
                 <th>RFC</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -82,13 +101,18 @@
                 <td><%= empleado.getTelefono() %></td>
                 <td><%= empleado.getSalario() %></td>
                 <td><%= empleado.getRfc() %></td>
+                <td>
+                    <button class="btn-accion btn-nomina">Generar Nómina</button>
+                    <button class="btn-accion btn-eliminar">Eliminar</button>
+                    <button class="btn-accion btn-editar" onclick="editarUsuario('<%= empleado.getIdUser() %>')">Editar</button>
+                </td>
             </tr>
             <%
                     }
                 } else {
             %>
             <tr>
-                <td colspan="8" style="text-align: center;">No hay empleados disponibles</td>
+                <td colspan="9" style="text-align: center;">No hay empleados disponibles</td>
             </tr>
             <%
                 }
@@ -106,10 +130,14 @@
                 info: true,
                 language: {
                     url: '//cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json' // Español
-                },
-                error: false
+                }
             });
         });
+
+        // Función para redirigir a la página de edición
+        function editarUsuario(idUser) {
+            window.location.href = 'editarEmpleado.jsp?idUser=' + idUser;
+        }
     </script>
 </body>
 </html>
