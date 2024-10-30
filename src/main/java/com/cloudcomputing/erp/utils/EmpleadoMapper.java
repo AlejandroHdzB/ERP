@@ -13,13 +13,16 @@ import java.util.logging.Logger;
 
 public class EmpleadoMapper {
     private static final Logger logger = Logger.getLogger(EmpleadoMapper.class.getName());  
+    private final Gson gson;
 
-    public static List<EmpleadoDTO> obtenerEmpleadosDesdeJson() {
-        // Instancia de Gson
-        Gson gson = new GsonBuilder().create();
+    // Constructor de la clase
+    public EmpleadoMapper() {
+        this.gson = new GsonBuilder().create();
+    }
 
+    public List<EmpleadoDTO> obtenerEmpleadosDesdeJson() {
         // Leer el archivo JSON y mapearlo a la lista de EmpleadoDTO
-        try (InputStream is = EmpleadoMapper.class.getResourceAsStream("/datos/datos.json")) {
+        try (InputStream is = getClass().getResourceAsStream("/datos/datos.json")) {
             if (is != null) {
                 // Leer el contenido del archivo para depuración
                 byte[] buffer = new byte[is.available()];
