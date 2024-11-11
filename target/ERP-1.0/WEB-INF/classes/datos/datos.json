@@ -1,5 +1,5 @@
 [
-{
+  {
     "idUser": "6355bd84fc13ae7d8f000001",
     "nombre": "Juan",
     "apellidoPaterno": "Pérez",
@@ -22,7 +22,7 @@
     "nss": "12345678901",
     "rfc": "PERJ900520HDF",
     "noCuenta": "1234567890123456",
-    "rol": "6355bd84fc13ae7d8f000010"
+    "rol": "Contabilidad"
   },
   {
     "idUser": "6355bd84fc13ae7d8f000002",
@@ -47,7 +47,7 @@
     "nss": "10987654321",
     "rfc": "LOPM850314GTX",
     "noCuenta": "0987654321098765",
-    "rol": "6355bd84fc13ae7d8f000011"
+    "rol": "Recursos Humanos"
   },
   {
     "idUser": "6355bd84fc13ae7d8f000003",
@@ -72,7 +72,7 @@
     "nss": "11223344556",
     "rfc": "HERM921125AB2",
     "noCuenta": "1122334455667788",
-    "rol": "6355bd84fc13ae7d8f000012"
+    "rol": "Ventas"
   },
   {
     "idUser": "6355bd84fc13ae7d8f000004",
@@ -97,7 +97,7 @@
     "nss": "22334455667",
     "rfc": "MARA950812PD2",
     "noCuenta": "2233445566778899",
-    "rol": "6355bd84fc13ae7d8f000013"
+    "rol": "Compras"
   },
   {
     "idUser": "6355bd84fc13ae7d8f000005",
@@ -122,6 +122,6 @@
     "nss": "33445566778",
     "rfc": "GOTL880222C35",
     "noCuenta": "3344556677889911",
-    "rol": "6355bd84fc13ae7d8f000014"
+    "rol": "Ventas"
   }
 ]

@@ -1,11 +1,12 @@
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\beans\editarEmpleado.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\services\EmpleadoService.java
-C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\servlets\editarEmpleado.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\utils\ContabilidadMapper.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\JakartaRestConfiguration.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\dto\EmpleadoDTO.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\services\ContabilidadService.java
-C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\servlets\listaEmpleados.java
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\beans\listaTransacciones.java
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\database\Connection.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\resources\JakartaEE91Resource.java
-C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\servlets\listaTransacciones.java
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\beans\listaEmpleados.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\dto\ContabilidadDTO.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\utils\EmpleadoMapper.java

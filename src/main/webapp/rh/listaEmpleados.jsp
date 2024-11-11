@@ -118,7 +118,7 @@
                 <th>Email</th>
                 <th>Teléfono</th>
                 <th>Salario</th>
-                <th>RFC</th>
+                <th>Rol</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -137,7 +137,7 @@
                 <td><%= empleado.getEmail() %></td>
                 <td><%= empleado.getTelefono() %></td>
                 <td><%= empleado.getSalario() %></td>
-                <td><%= empleado.getRfc() %></td>
+                <td><%= empleado.getRol() %></td>
                 <td>
                     <button class="btn-accion btn-nomina">Generar Nómina</button>
                     <button class="btn-accion btn-eliminar">Eliminar</button>
