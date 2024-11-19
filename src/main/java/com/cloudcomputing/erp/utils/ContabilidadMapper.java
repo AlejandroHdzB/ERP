@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 
 
 public class ContabilidadMapper {
-     private static final Logger logger = Logger.getLogger(EmpleadoMapper.class.getName());  
+     private static final Logger logger = Logger.getLogger(ContabilidadMapper.class.getName());  
 
     public static List<ContabilidadDTO> obtenerTransDesdeJson() {
         // Instancia de Gson

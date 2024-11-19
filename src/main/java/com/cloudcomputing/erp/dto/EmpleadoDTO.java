@@ -13,16 +13,16 @@ import java.util.Date;
 @Getter
 public class EmpleadoDTO {
 
-    @SerializedName("idUser")
-    private String idUser;
+    @SerializedName("_id")
+    private String idEmpleado;
 
     @SerializedName("nombre")
     private String nombre;
 
-    @SerializedName("apellidoPaterno")
+    @SerializedName("apellido_paterno")
     private String apellidoPaterno;
 
-    @SerializedName("apellidoMaterno")
+    @SerializedName("apellido_materno")
     private String apellidoMaterno;
 
     @SerializedName("email")
@@ -37,10 +37,10 @@ public class EmpleadoDTO {
     @SerializedName("domicilio")
     private Domicilio domicilio;
 
-    @SerializedName("fechaAlta")
+    @SerializedName("fecha_alta")
     private Date fechaAlta;
 
-    @SerializedName("fechaNacimiento")
+    @SerializedName("fecha_nacimiento")
     private Date fechaNacimiento;
 
     @SerializedName("estatus")
@@ -49,16 +49,16 @@ public class EmpleadoDTO {
     @SerializedName("salario")
     private double salario;
 
-    @SerializedName("nss")
+    @SerializedName("NSS")
     private String nss;
 
-    @SerializedName("rfc")
+    @SerializedName("RFC")
     private String rfc;
 
-    @SerializedName("noCuenta")
+    @SerializedName("No_Cuenta")
     private String noCuenta;
 
-    @SerializedName("rol")
+    @SerializedName("ROL")
     private String rol;
 
     @Data
@@ -70,13 +70,13 @@ public class EmpleadoDTO {
         @SerializedName("calle")
         private String calle;
 
-        @SerializedName("noExt")
+        @SerializedName("no_Ext")
         private int noExt;
 
-        @SerializedName("noInt")
+        @SerializedName("no_Int")
         private int noInt;
 
-        @SerializedName("cp")
+        @SerializedName("CP")
         private int cp;
 
         @SerializedName("ciudad")

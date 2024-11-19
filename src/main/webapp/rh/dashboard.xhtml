@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Dashboard - Recursos Humanos</title>
+    <style>
+        body {
+            background-color: #ECF0F1;
+            font-family: 'Arial', sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #343a40;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            width: 90%;
+        }
+
+        .card {
+            background-color: #ffffff;
+            width: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        .btn-accion {
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 4px;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .btn-nomina {
+            background-color: #3498DB;
+            color: #FFFFFF;
+        }
+
+        .btn-asistencia {
+            background-color: #9B59B6;
+            color: #FFFFFF;
+        }
+
+        .btn-empleados {
+            background-color: #2ECC71;
+            color: #FFFFFF;
+        }
+
+        .btn-reportes {
+            background-color: #E67E22;
+            color: #FFFFFF;
+        }
+
+        .btn-eliminar {
+            background-color: #E74C3C;
+            color: #FFFFFF;
+        }
+    </style>
+</h:head>
+<h:body>
+
+    <h1>Dashboard de Recursos Humanos</h1>
+
+    <div class="container">
+        <!-- Card Empleados -->
+        <div class="card">
+            <div class="card-title">Empleados</div>
+            <h:commandButton value="Gestionar Empleados" action="#{dashboardController.verEmpleados()}" styleClass="btn-accion btn-empleados"/>
+        </div>
+
+        <!-- Card Nómina -->
+        <div class="card">
+            <div class="card-title">Nómina</div>
+            <h:commandButton value="Ver Nómina" action="#{dashboardController.verNomina()}" styleClass="btn-accion btn-nomina"/>
+        </div>
+
+        <!-- Card Reportes -->
+        <div class="card">
+            <div class="card-title">Reportes</div>
+            <h:commandButton value="Generar Reportes" action="#{dashboardController.verReportes()}" styleClass="btn-accion btn-reportes"/>
+        </div>
+    </div>
+
+</h:body>
+</html>
+
