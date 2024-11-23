@@ -10,12 +10,11 @@ import java.net.http.HttpResponse;
 
 @Named
 @RequestScoped
-public class apiLoginEmpleados {
-    public void consultar() {
+public class ApiLoginEmpleados {
+    public ResultadoRespuesta consultar(String email, String password) {
         try {
             HttpClient client = HttpClient.newHttpClient();
-
-            String jsonBody = "{\"email\":\"juan.perez@example.com\",\"password\":password123}";
+            String jsonBody = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
 
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create("http://10.128.1.68/ValidacionUsuarios/api/login"))
@@ -26,12 +25,16 @@ public class apiLoginEmpleados {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
             if (response.statusCode() == 200) {
-                System.out.println("Respuesta: " + response.body());
+                // Respuesta exitosa
+                return new ResultadoRespuesta(response.statusCode(), response.body());
             } else {
-                System.err.println("Error: " + response.statusCode());
+                // Error en la respuesta
+                return new ResultadoRespuesta(response.statusCode(), "Error: " + response.body());
             }
         } catch (IOException | InterruptedException e) {
-            System.err.println("Error: " + e.getMessage());
+            // Error durante la ejecución
+            return new ResultadoRespuesta(500, "Error: " + e.getMessage());
         }
     }
+
 }

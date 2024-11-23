@@ -5,7 +5,6 @@ import com.cloudcomputing.erp.database.Connection;
 import com.cloudcomputing.erp.dto.ContabilidadDTO;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
-import jakarta.mail.internet.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

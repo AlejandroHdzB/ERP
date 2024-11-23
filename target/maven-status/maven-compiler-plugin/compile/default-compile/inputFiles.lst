@@ -1,10 +1,12 @@
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\apiConnections\ResultadoRespuesta.java
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\auth\LoginController.java
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\apiConnections\ApiLoginEmpleados.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\services\EmpleadoService.java
-C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\utils\ContabilidadMapper.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\JakartaRestConfiguration.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\dto\EmpleadoDTO.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\services\ContabilidadService.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\database\Connection.java
-C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\contabilidad\listaTransacciones.java
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\contabilidad\listaTransaccionesController.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\dto\RolDTO.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\rh\ListaEmpleadosController.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\rh\EditarEmpleadoController.java
