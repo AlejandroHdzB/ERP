@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Nuevo Empleado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2C3E50;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #2C3E50;
+            color: #ECF0F1;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #34495E;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Crear Nuevo Empleado</h1>
+    <h:form id="formCrearEmpleado">
+        <h:panelGrid columns="2" cellpadding="5">
+            <h:outputLabel for="nombre" value="Nombre" />
+            <h:inputText id="nombre" value="#{crearEmpleadoController.empleado.nombre}" required="true" />
+
+            <h:outputLabel for="apellidoPaterno" value="Apellido Paterno" />
+            <h:inputText id="apellidoPaterno" value="#{crearEmpleadoController.empleado.apellidoPaterno}" required="true" />
+
+            <h:outputLabel for="apellidoMaterno" value="Apellido Materno" />
+            <h:inputText id="apellidoMaterno" value="#{crearEmpleadoController.empleado.apellidoMaterno}" />
+
+            <h:outputLabel for="email" value="Correo Electrónico" />
+            <h:inputText id="email" type="email" value="#{crearEmpleadoController.empleado.email}" required="true" />
+
+            <h:outputLabel for="pwd" value="Contraseña" />
+            <h:inputSecret id="pwd" value="#{crearEmpleadoController.empleado.pwd}" required="true" />
+
+            <h:outputLabel for="confirmPwd" value="Confirmar Contraseña" />
+            <h:inputSecret id="confirmPwd" value="#{crearEmpleadoController.confirmPwd}" required="true" />
+
+            <h:outputLabel for="telefono" value="Teléfono" />
+            <h:inputText id="telefono" value="#{crearEmpleadoController.empleado.telefono}" required="true" />
+
+            <h:outputLabel for="calle" value="Calle" />
+            <h:inputText id="calle" value="#{crearEmpleadoController.empleado.domicilio.calle}" />
+
+            <h:outputLabel for="noExt" value="Número Exterior" />
+            <h:inputText id="noExt" value="#{crearEmpleadoController.empleado.domicilio.noExt}" />
+
+            <h:outputLabel for="noInt" value="Número Interior" />
+            <h:inputText id="noInt" value="#{crearEmpleadoController.empleado.domicilio.noInt}" />
+
+            <h:outputLabel for="cp" value="Código Postal" />
+            <h:inputText id="cp" value="#{crearEmpleadoController.empleado.domicilio.cp}" />
+
+            <h:outputLabel for="ciudad" value="Ciudad" />
+            <h:inputText id="ciudad" value="#{crearEmpleadoController.empleado.domicilio.ciudad}" />
+
+            <h:outputLabel for="estado" value="Estado" />
+            <h:inputText id="estado" value="#{crearEmpleadoController.empleado.domicilio.estado}" />
+
+            <h:outputLabel for="fechaAlta" value="Fecha de Alta" />
+            <h:inputText id="fechaAlta" type="date" value="#{crearEmpleadoController.empleado.fechaAlta}" required="true" />
+
+            <h:outputLabel for="fechaNacimiento" value="Fecha de Nacimiento" />
+            <h:inputText id="fechaNacimiento" type="date" value="#{crearEmpleadoController.empleado.fechaNacimiento}" required="true" />
+
+            <h:outputLabel for="estatus" value="Estatus" />
+            <h:inputText id="estatus" value="#{crearEmpleadoController.empleado.estatus}" />
+
+            <h:outputLabel for="salario" value="Salario" />
+            <h:inputText id="salario" type="number" value="#{crearEmpleadoController.empleado.salario}" />
+
+            <h:outputLabel for="nss" value="NSS" />
+            <h:inputText id="nss" value="#{crearEmpleadoController.empleado.nss}" />
+
+            <h:outputLabel for="rfc" value="RFC" />
+            <h:inputText id="rfc" value="#{crearEmpleadoController.empleado.rfc}" />
+
+            <h:outputLabel for="noCuenta" value="Número de Cuenta" />
+            <h:inputText id="noCuenta" value="#{crearEmpleadoController.empleado.noCuenta}" />
+
+            <h:outputLabel for="rol" value="Rol" />
+            <h:inputText id="rol" value="#{crearEmpleadoController.empleado.rol}" />
+        </h:panelGrid>
+
+        <h:commandButton value="Crear Empleado" action="#{crearEmpleadoController.crearEmpleado()}" styleClass="btn" />
+    </h:form>
+</div>
+
+</body>
+</html>

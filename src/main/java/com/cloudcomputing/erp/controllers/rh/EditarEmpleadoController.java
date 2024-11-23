@@ -31,9 +31,8 @@ public class EditarEmpleadoController {
     }
 
     // Método para guardar los cambios
-    public String guardarCambios() {
+    public void guardarCambios() {
         // Lógica para actualizar el empleado
         System.out.println("Guardando cambios para: " + empleado.getNombre());
-        return "listaEmpleados.xhtml?faces-redirect=true";
     }
 }

@@ -70,6 +70,27 @@ public class EmpleadoService {
         return empleadoDTO;
     }
     
+    public void agregarEmpleado(EmpleadoDTO empleadoDTO) {
+        try {
+            connection.connect();
+            String json = gson.toJson(empleadoDTO);
+
+            Document document = Document.parse(json);
+
+            boolean resultado = connection.addDocument("empleados", document);
+
+            if (resultado) {
+                System.out.println("Empleado agregado correctamente: " + empleadoDTO);
+            } else {
+                System.err.println("Error al agregar el empleado.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error al agregar empleado: " + e.getMessage());
+        } finally{
+            connection.closeConnection();
+        }
+    }
+    
     private void correcionValoresJSON(Document doc){
         try {
             if (doc.containsKey("_id")) {

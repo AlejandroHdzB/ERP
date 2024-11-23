@@ -1,6 +1,5 @@
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\services\EmpleadoService.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\utils\ContabilidadMapper.java
-C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\rh\DashboardController.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\JakartaRestConfiguration.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\dto\EmpleadoDTO.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\services\ContabilidadService.java
@@ -9,5 +8,6 @@ C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputi
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\dto\RolDTO.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\rh\ListaEmpleadosController.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\rh\EditarEmpleadoController.java
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\rh\CrearEmpleadoController.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\resources\JakartaEE91Resource.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\dto\ContabilidadDTO.java

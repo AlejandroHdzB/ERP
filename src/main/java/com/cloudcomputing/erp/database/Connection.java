@@ -74,6 +74,61 @@ public class Connection {
             return null;
         }
     }
+    
+    public boolean addDocument(String collectionName, Document document) {
+        try {
+            MongoCollection<Document> collection = database.getCollection(collectionName);
+            collection.insertOne(document);
+            System.out.println("Documento agregado correctamente.");
+            return true;
+        } catch (Exception e) {
+            System.err.println("Error al agregar el documento: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean updateDocument(String collectionName, String id, Document updatedFields) {
+        try {
+            MongoCollection<Document> collection = database.getCollection(collectionName);
+
+            ObjectId objectId = new ObjectId(id);
+            Document query = new Document("_id", objectId);
+
+            Document update = new Document("$set", updatedFields);
+
+            if (collection.updateOne(query, update).getModifiedCount() > 0) {
+                System.out.println("Documento actualizado correctamente.");
+                return true;
+            } else {
+                System.out.println("No se encontró el documento con ID: " + id);
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error al actualizar el documento: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public boolean deleteDocument(String collectionName, String id) {
+        try {
+            MongoCollection<Document> collection = database.getCollection(collectionName);
+
+            ObjectId objectId = new ObjectId(id);
+            Document query = new Document("_id", objectId);
+
+            if (collection.deleteOne(query).getDeletedCount() > 0) {
+                System.out.println("Documento eliminado correctamente.");
+                return true;
+            } else {
+                System.out.println("No se encontró el documento con ID: " + id);
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error al eliminar el documento: " + e.getMessage());
+            return false;
+        }
+    }
+
 
     public void printCollectionData(String collectionName) {
         List<Document> dataList = getCollectionData(collectionName);

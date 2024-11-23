@@ -94,7 +94,7 @@
                             <td>
                                 <button type="button" class="btn btn-accion btn-nomina">Generar Nómina</button>
                                 <button type="button" class="btn btn-accion btn-eliminar">Eliminar</button>
-                                <h:commandButton value="Editar" action="editarEmpleado.xhtml" styleClass="btn btn-accion btn-editar">
+                                <h:commandButton value="Editar" action="editarEmpleado.xhtml?faces-redirect=true" styleClass="btn btn-accion btn-editar">
                                     <f:param name="idUser" value="#{empleado.idEmpleado}" />
                                 </h:commandButton>
                             </td>
