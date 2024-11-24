@@ -5,65 +5,83 @@
 
 <head>
     <title>ITTExpress</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link rel="icon" type="image/x-icon" href="images/favicon.ico" />
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            background-color: #ECF0F1;
+            font-family: 'Arial', sans-serif;
         }
-        header {
-            background-color: #0047AB;
-            color: white;
-            padding: 1em 0;
+
+        h1 {
             text-align: center;
+            margin: 20px 0;
+            color: #343a40;
         }
-        nav {
-            background-color: #002D72;
-            overflow: hidden;
+
+        nav.navbar {
+            background-color: #011333;
         }
-        nav a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 20px;
-            text-decoration: none;
-        }
-        nav a:hover {
-            background-color: #0056D6;
+
+        nav a.nav-link {
             color: white;
         }
+
+        nav a.nav-link:hover {
+            color: #e9ecef;
+        }
+
         .body-content {
             text-align: center;
             padding: 2em;
         }
+
         .body-content img {
             width: 70%;
             max-width: 800px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #343a40;
+            color: white;
+            margin-top: 20px;
         }
     </style>
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
-        <h1>ITTExpress</h1>
-    </header>
-
-    <!-- Navigation Bar -->
-    <nav>
-        <a href="login.xhtml?faces-redirect=true">Iniciar Sesión</a>
-        <a href="rh/about.xhtml">Acerca de</a>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">ITTExpress</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.xhtml?faces-redirect=true">Iniciar Sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="rh/about.xhtml">Acerca de</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </nav>
 
-    <!-- Main Content -->
-    <div class="body-content">
+    <div class="container body-content">
         <h2>Bienvenido a ITTExpress</h2>
-        <img src="images/banner.png" alt="Imagen principal" />
+        <img src="images/banner.png" alt="Logo ITTExpress" class="img-fluid" />
     </div>
+    
+    <footer>
+        <p>&copy; 2024 ITTExpress. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

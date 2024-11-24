@@ -11,15 +11,15 @@ import jakarta.inject.Named;
 public class EditarEmpleadoController {
 
     private final EmpleadoService empleadoService;
-    private final String idUser;
+    private final String idEmpleado;
     private EmpleadoDTO empleado;
 
     public EditarEmpleadoController() {
         empleadoService = new EmpleadoService();
-        idUser = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idUser");
-        System.out.println("ID del usuario: " + idUser);
+        idEmpleado = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("idEmpleado");
+        System.out.println("ID de empleado: " + idEmpleado);
         
-        empleado = empleadoService.obtenerEmpleadoPorId(idUser);
+        empleado = empleadoService.obtenerEmpleadoPorId(idEmpleado);
     }
 
     public EmpleadoDTO getEmpleado() {
