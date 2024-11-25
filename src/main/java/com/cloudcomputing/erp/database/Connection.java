@@ -36,7 +36,6 @@ public class Connection {
 
             // Prueba de conexión
             database.runCommand(new Document("ping", 1));
-            System.out.println("Conexión exitosa a MongoDB.");
         } catch (MongoException e) {
             System.err.println("Error al conectar a MongoDB: " + e.getMessage());
         }
@@ -45,7 +44,6 @@ public class Connection {
     public void closeConnection() {
         if (mongoClient != null) {
             mongoClient.close();
-            System.out.println("Conexión a MongoDB cerrada.");
         }
     }
 
@@ -93,14 +91,25 @@ public class Connection {
 
             ObjectId objectId = new ObjectId(id);
             Document query = new Document("_id", objectId);
+            Document existingDocument = collection.find(query).first();
 
-            Document update = new Document("$set", updatedFields);
+            if (existingDocument == null) {
+                System.out.println("No se encontró el documento con ID: " + id);
+                return false;
+            }
+
+            for (String key : updatedFields.keySet()) {
+                existingDocument.put(key, updatedFields.get(key));
+            }
+            existingDocument.remove("_id");
+
+            Document update = new Document("$set", existingDocument);
 
             if (collection.updateOne(query, update).getModifiedCount() > 0) {
                 System.out.println("Documento actualizado correctamente.");
                 return true;
             } else {
-                System.out.println("No se encontró el documento con ID: " + id);
+                System.out.println("No se pudo actualizar el documento con ID: " + id);
                 return false;
             }
         } catch (Exception e) {
@@ -108,6 +117,7 @@ public class Connection {
             return false;
         }
     }
+
 
     public boolean deleteDocument(String collectionName, String id) {
         try {

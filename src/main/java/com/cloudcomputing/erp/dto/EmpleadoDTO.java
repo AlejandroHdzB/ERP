@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.Getter;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -38,10 +38,10 @@ public class EmpleadoDTO {
     private Domicilio domicilio;
 
     @SerializedName("fecha_alta")
-    private Date fechaAlta;
+    private LocalDate fechaAlta;
 
     @SerializedName("fecha_nacimiento")
-    private Date fechaNacimiento;
+    private LocalDate fechaNacimiento;
 
     @SerializedName("estatus")
     private String estatus;

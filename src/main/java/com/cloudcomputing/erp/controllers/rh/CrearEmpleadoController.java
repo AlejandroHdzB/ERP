@@ -1,22 +1,33 @@
 package com.cloudcomputing.erp.controllers.rh;
 
 import com.cloudcomputing.erp.dto.EmpleadoDTO;
+import com.cloudcomputing.erp.dto.RolDTO;
 import com.cloudcomputing.erp.services.EmpleadoService;
+import com.cloudcomputing.erp.services.RolService;
+import jakarta.annotation.PostConstruct;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 @Named
 @RequestScoped
 public class CrearEmpleadoController {
     private final EmpleadoService empleadoService;
+    private final RolService rolService;
     private EmpleadoDTO empleado;
-    private String confirmPwd;
+    private List<RolDTO> roles;
 
     public CrearEmpleadoController() {
         empleadoService = new EmpleadoService();
+        rolService = new RolService();
         empleado = new EmpleadoDTO();
         empleado.setDomicilio(new EmpleadoDTO.Domicilio());
-        confirmPwd = "";
+    }
+
+    @PostConstruct
+    public void init() {
+        roles = rolService.obtenerRoles();
     }
 
     public EmpleadoDTO getEmpleado() {
@@ -27,16 +38,17 @@ public class CrearEmpleadoController {
         this.empleado = empleado;
     }
 
-    public String getConfirmPwd() {
-        return confirmPwd;
+    public List<RolDTO> getRoles() {
+        return roles;
     }
 
-    public void setConfirmPwd(String confirmPwd) {
-        this.confirmPwd = confirmPwd;
-    }
-    
     public String crearEmpleado() {
-        empleadoService.agregarEmpleado(empleado);
-        return "dashboard.xhtml?faces-redirect=true";
-    }
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    String password = String.format("%s-%s",
+            empleado.getFechaAlta().format(formatter),
+            empleado.getNombre());
+    empleado.setPwd(password);
+    empleadoService.agregarEmpleado(empleado);
+    return "dashboard.xhtml?faces-redirect=true";
+}
 }
