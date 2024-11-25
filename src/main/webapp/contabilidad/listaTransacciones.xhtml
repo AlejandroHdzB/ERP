@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -94,6 +96,9 @@
                     <option value="pdf">Descargar como PDF</option>
                 </select>
             </div>
+            <h:form>
+                <h:commandButton value="Crear Movimiento" action="#{registrarMovimientoController.crearMovimiento}" styleClass="btn btn-primary" />
+            </h:form>
 
             <div class="search-container">
                 <label for="search" class="form-label">Buscar:</label>
@@ -114,7 +119,11 @@
                     <tbody>
                         <ui:repeat value="#{listaTransaccionesController.transacciones}" var="transacciones">
                             <tr>
-                                <td>#{transacciones.fechaMov}</td>
+                                <td>
+                                    <h:outputText value="#{transacciones.fechaMov}">
+                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+                                    </h:outputText>
+                                </td>
                                 <td>#{transacciones.descripcion}</td>
                                 <td>#{transacciones.cuenta}</td>
                                 <td>#{transacciones.monto}</td>

@@ -12,6 +12,7 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 public class Connection {
@@ -52,6 +53,17 @@ public class Connection {
         try {
             MongoCollection<Document> collection = database.getCollection(collectionName);
             collection.find().forEach(dataList::add);
+        } catch (Exception e) {
+            System.err.println("Error al obtener datos de la colección: " + e.getMessage());
+        }
+        return dataList;
+    }
+    
+    public List<Document> getCollectionDataFilter(String collectionName, Bson filter) {
+        List<Document> dataList = new ArrayList<>();
+        try {
+            MongoCollection<Document> collection = database.getCollection(collectionName);
+            collection.find(filter).forEach(dataList::add);
         } catch (Exception e) {
             System.err.println("Error al obtener datos de la colección: " + e.getMessage());
         }

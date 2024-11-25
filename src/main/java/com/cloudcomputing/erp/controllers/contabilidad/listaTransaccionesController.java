@@ -1,3 +1,4 @@
+
 package com.cloudcomputing.erp.controllers.contabilidad;
 
 import com.cloudcomputing.erp.dto.ContabilidadDTO;
@@ -6,33 +7,31 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+
 
 @Named
 @RequestScoped
 public class listaTransaccionesController implements Serializable {
-    
-    private final ContabilidadService contabilidadService;
+      private final ContabilidadService contabilidadService;
     private List<ContabilidadDTO> transacciones;
-    
+
     public listaTransaccionesController() {
-    contabilidadService = new ContabilidadService();
-    transacciones = contabilidadService.listarTransacciones();
+        contabilidadService = new ContabilidadService();
+        
+        // Obtener las transacciones del día actual
+        transacciones = contabilidadService.listarTransaccionesPorFecha();
 
-    if (transacciones == null || transacciones.isEmpty()) {
-        System.out.println("No se encontraron transacciones.");
-        transacciones = new ArrayList<>();
-    } else {
-
-        transacciones.forEach(trans -> System.out.print(trans.getIdTransaccion() + " " + trans.getTipo_Mov()));
+        if (transacciones == null || transacciones.isEmpty()) {
+            System.out.println("No se encontraron transacciones para hoy.");
+            transacciones = new ArrayList<>();
+        } else {
+            transacciones.forEach(trans -> System.out.println(trans.getIdTransaccion() + " " + trans.getTipo_Mov()));
+        }
     }
-}
 
-    
-        public List<ContabilidadDTO> getTransacciones() {
+    public List<ContabilidadDTO> getTransacciones() {
         return transacciones;
     }
-
-    
-    
 }
