@@ -8,6 +8,8 @@ C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputi
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\services\ContabilidadService.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\database\Connection.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\rh\NominaGeneralController.java
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\contabilidad\RegistrarMovimientoController.java
+C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\rh\NominaPorEmpleadoController.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\controllers\contabilidad\listaTransaccionesController.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\dto\RolDTO.java
 C:\Users\Alejandro\Documents\NetBeansProjects\ERP\src\main\java\com\cloudcomputing\erp\dto\VistaNominaGeneral.java

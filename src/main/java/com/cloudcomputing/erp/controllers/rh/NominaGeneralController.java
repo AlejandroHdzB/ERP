@@ -1,6 +1,5 @@
 package com.cloudcomputing.erp.controllers.rh;
 
-import com.cloudcomputing.erp.dto.NominaDTO;
 import com.cloudcomputing.erp.dto.VistaNominaGeneral;
 import com.cloudcomputing.erp.services.NominaService;
 import jakarta.enterprise.context.RequestScoped;
@@ -51,5 +50,9 @@ public class NominaGeneralController implements Serializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    public String verNominaPorEmpleado(){
+        return "nominaPorEmpleado.xhtml?faces-redirect=true";
     }
 }

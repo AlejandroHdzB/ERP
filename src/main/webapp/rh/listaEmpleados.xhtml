@@ -133,9 +133,6 @@
                                 <td>#{empleado.telefono}</td>
                                 <td>#{empleado.rol}</td>
                                 <td>
-                                    <h:commandButton value="Generar Nómina" action="#{listaEmpleadosController.generarNomina(empleado.idEmpleado)}" styleClass="btn btn-accion btn-nomina">
-                                        <f:ajax execute="@this" render="@form" />
-                                    </h:commandButton>
                                     <h:commandButton value="Eliminar" action="#{listaEmpleadosController.eliminarEmpleado(empleado.idEmpleado)}" styleClass="btn btn-accion btn-eliminar">
                                         <f:ajax execute="@this" render="@form" />
                                     </h:commandButton>

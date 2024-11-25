@@ -71,12 +71,43 @@
             width: 300px;
             margin-left: 10px;
         }
+
+        .btn-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn-primary-custom {
+            background-color: #2980B9;
+            border-color: #2980B9;
+            color: #FFFFFF;
+        }
+
+        .btn-warning-custom {
+            background-color: #E67E22;
+            border-color: #E67E22;
+            color: #FFFFFF;
+        }
+
+        .btn-primary-custom:hover,
+        .btn-warning-custom:hover {
+            opacity: 0.85;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <h1>Nómina General de Empleados</h1>
+
+        <!-- Botones para gestionar y calcular nóminas -->
+        <div class="btn-container">
+            <h:form>
+                <h:commandButton value="Gestionar Nómina por Empleado" action="#{nominaGeneralController.verNominaPorEmpleado()}" styleClass="btn btn-primary-custom" />
+                <h:commandButton value="Calcular Nómina para Todos los Empleados" action="#{nominaGeneralController.calcularNominaParaTodos}" styleClass="btn btn-warning-custom" />
+            </h:form>
+        </div>
 
         <!-- Search Container -->
         <div class="search-container">

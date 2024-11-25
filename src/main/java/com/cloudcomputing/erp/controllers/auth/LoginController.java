@@ -33,9 +33,8 @@ public class LoginController {
     }
 
     public String login() {
-        ApiLoginEmpleados apiLoginEmpleados = new ApiLoginEmpleados();
 
-        //ResultadoRespuesta response = apiLoginEmpleados.consultar(email, password);
+        //ResultadoRespuesta response = ApiLoginEmpleados.consultar(email, password);
 
         //System.out.println(response.getMensaje());
         

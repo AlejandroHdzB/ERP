@@ -9,6 +9,7 @@ com\cloudcomputing\erp\controllers\contabilidad\listaTransaccionesController.cla
 com\cloudcomputing\erp\controllers\rh\CrearEmpleadoController.class
 com\cloudcomputing\erp\utils\LocalDateConverter.class
 com\cloudcomputing\erp\apiConnections\ApiLoginEmpleados.class
+com\cloudcomputing\erp\controllers\rh\NominaPorEmpleadoController.class
 com\cloudcomputing\erp\dto\EmpleadoDTO.class
 com\cloudcomputing\erp\dto\ContabilidadDTO.class
 com\cloudcomputing\erp\controllers\rh\NominaGeneralController.class
@@ -17,7 +18,9 @@ com\cloudcomputing\erp\services\EmpleadoService.class
 com\cloudcomputing\erp\services\RolService.class
 com\cloudcomputing\erp\controllers\rh\EditarEmpleadoController.class
 com\cloudcomputing\erp\utils\GenerarPDF.class
+com\cloudcomputing\erp\controllers\contabilidad\RegistrarMovimientoController$Movimiento.class
 com\cloudcomputing\erp\controllers\auth\LoginController.class
+com\cloudcomputing\erp\controllers\contabilidad\RegistrarMovimientoController.class
 com\cloudcomputing\erp\controllers\rh\ListaEmpleadosController.class
 com\cloudcomputing\erp\JakartaRestConfiguration.class
 com\cloudcomputing\erp\resources\JakartaEE91Resource.class
