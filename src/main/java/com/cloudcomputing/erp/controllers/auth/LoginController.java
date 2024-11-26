@@ -34,11 +34,10 @@ public class LoginController {
 
     public String login() {
 
-        //ResultadoRespuesta response = ApiLoginEmpleados.consultar(email, password);
+        ResultadoRespuesta response = ApiLoginEmpleados.consultar(email, password);
 
-        //System.out.println(response.getMensaje());
+        String body = response.getMensaje();
         
-        ResultadoRespuesta response = new ResultadoRespuesta(200, "Recursos Humanos");
 
         if (response.getEstado() == 200) {
             String rol = response.getMensaje();

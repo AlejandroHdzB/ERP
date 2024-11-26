@@ -20,7 +20,7 @@ public class ContabilidadDTO {
     private Date fechaMov;
 
     @SerializedName("tipo_mov")
-    private String tipo_Mov;
+    private String tipoMov;
 
     @SerializedName("monto")
     private double monto;

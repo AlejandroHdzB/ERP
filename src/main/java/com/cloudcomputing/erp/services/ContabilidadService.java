@@ -43,7 +43,7 @@ public class ContabilidadService {
                 Filters.lte("fecha_mov", fechaFin)
         );
 
-        List<Document> documentos = connection.getCollectionDataFilter(NAME_COLLECTION, filter);
+        List<Document> documentos = connection.getCollectionData(NAME_COLLECTION);
 
         // Verificar si se encontraron documentos
         if (documentos == null || documentos.isEmpty()) {

@@ -27,7 +27,7 @@ public class listaTransaccionesController implements Serializable {
             System.out.println("No se encontraron transacciones para hoy.");
             transacciones = new ArrayList<>();
         } else {
-            transacciones.forEach(trans -> System.out.println(trans.getIdTransaccion() + " " + trans.getTipo_Mov()));
+            transacciones.forEach(trans -> System.out.println(trans.getIdTransaccion() + " " + trans.getTipoMov()));
         }
     }
 
