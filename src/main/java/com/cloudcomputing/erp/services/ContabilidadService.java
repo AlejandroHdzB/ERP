@@ -6,6 +6,9 @@ import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.mongodb.client.model.Filters;
 import java.text.SimpleDateFormat;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,68 +24,73 @@ public class ContabilidadService {
     private final Connection connection = new Connection();
     private final Gson gson = new Gson();
 
- public List<ContabilidadDTO> listarTransaccionesPorFecha() {
-    List<ContabilidadDTO> transacciones = new ArrayList<>();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"); // Definir el formato de fecha
-    Date fechaInicio = null;
-    Date fechaFin = null;
+    public List<ContabilidadDTO> listarTransaccionesPorFecha() {
+        List<ContabilidadDTO> transacciones = new ArrayList<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"); // Definir el formato de fecha
+        Date fechaInicio = null;
+        Date fechaFin = null;
 
-    try {
-        connection.connect();
+        try {
+            connection.connect();
 
-        Date fechaHoy = new Date();  
+           
 
-        String fechaInicioStr = sdf.format(fechaHoy).split("T")[0] + "T00:00:00.000+00:00";
-        String fechaFinStr = sdf.format(fechaHoy).split("T")[0] + "T23:59:59.999+00:00";
+            List<Document> documentos = connection.getCollectionData(NAME_COLLECTION);
 
-        fechaInicio = sdf.parse(fechaInicioStr);
-        fechaFin = sdf.parse(fechaFinStr);
+            // Verificar si se encontraron documentos
+            if (documentos == null || documentos.isEmpty()) {
+                return transacciones; // Retorna lista vacía si no hay datos
+            }
 
-        Bson filter = Filters.and(
-                Filters.gte("fecha_mov", fechaInicio),
-                Filters.lte("fecha_mov", fechaFin)
-        );
-
-        List<Document> documentos = connection.getCollectionData(NAME_COLLECTION);
-
-        // Verificar si se encontraron documentos
-        if (documentos == null || documentos.isEmpty()) {
-            System.out.println("No se encontraron transacciones para la fecha: " + fechaHoy);
-            return transacciones; // Retorna lista vacía si no hay datos
+            // Convertir los documentos a DTO
+            for (Document doc : documentos) {
+                correcionValoresJSON(doc);
+                ContabilidadDTO transaccion = gson.fromJson(doc.toJson(), ContabilidadDTO.class);
+                transacciones.add(transaccion);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al listar transacciones por fecha: " + e.getMessage());
+        } finally {
+            connection.closeConnection();
         }
-
-        // Convertir los documentos a DTO
-        for (Document doc : documentos) {
-            correcionValoresJSON(doc);
-            ContabilidadDTO transaccion = gson.fromJson(doc.toJson(), ContabilidadDTO.class);
-            transacciones.add(transaccion);
-        }
-    } catch (Exception e) {
-        System.err.println("Error al listar transacciones por fecha: " + e.getMessage());
-    } finally {
-        connection.closeConnection();
+        return transacciones;
     }
-    return transacciones;
-}
-
-
 
     public void agregarMovimiento(ContabilidadDTO contabilidadDTO) {
         try {
             connection.connect();
-            String json = gson.toJson(contabilidadDTO);
 
+            // Convertir a JSON y luego a Document
+            String json = gson.toJson(contabilidadDTO);
             Document document = Document.parse(json);
 
+            // Reemplazar el campo fechaMov con el tipo correcto
+           if (contabilidadDTO.getFechaMov() != null) {
+                // Ajustar la fecha a la zona horaria de México
+                ZonedDateTime zonedDateTime = contabilidadDTO.getFechaMov()
+                        .toInstant()
+                        .atZone(ZoneId.of("America/Mexico_City"));
+
+                // Formatear la fecha en formato ISO sin zona horaria
+                String fechaFormateada = zonedDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+
+                // Guardar la fecha como String (sin zona horaria)
+                document.put("fecha_mov", fechaFormateada);  // Ahora guardamos la fecha como String en el documento
+
+                System.out.println("Fecha ajustada y formateada como String sin zona horaria: " + fechaFormateada);
+            }
+
+
+            // Guardar el documento en la colección
             boolean resultado = connection.addDocument("contabilidad", document);
 
             if (resultado) {
-                System.out.println("Empleado agregado correctamente: " + contabilidadDTO);
+                System.out.println("Movimiento agregado correctamente: " + contabilidadDTO);
             } else {
-                System.err.println("Error al agregar el empleado.");
+                System.err.println("Error al agregar el movimiento.");
             }
         } catch (Exception e) {
-            System.err.println("Error al agregar empleado: " + e.getMessage());
+            System.err.println("Error al agregar movimiento: " + e.getMessage());
         } finally {
             connection.closeConnection();
         }

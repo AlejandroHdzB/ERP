@@ -116,7 +116,7 @@
                             <tr class="transaction-row">
                                 <td>
                                     <h:outputText value="#{transaccion.fechaMov}">
-                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm" />
+                                        <f:convertDateTime pattern="yyyy-MM-dd " />
                                     </h:outputText>
                                 </td>
                                 <td>#{transaccion.descripcion}</td>
@@ -165,20 +165,20 @@
 
                     // Establecer el valor en el input del filtro con la fecha de hoy
                     $('#filterDate').val(today);
-                    
-                     $('#tablaTransacciones tbody tr').each(function () {
-                                var transactionDate = $(this).find('td:first').text().trim();
-                                // Asegurarse de que la comparación sea con la fecha de hoy
-                                if (transactionDate.includes(today)) {
-                                    $(this).show(); // Mostrar la fila
-                                } else {
-                                    $(this).hide(); // Ocultar la fila
-                                }
-                            });
+
+                    $('#tablaTransacciones tbody tr').each(function () {
+                        var transactionDate = $(this).find('td:first').text().trim();
+                        // Asegurarse de que la comparación sea con la fecha de hoy
+                        if (transactionDate.includes(today)) {
+                            $(this).show(); // Mostrar la fila
+                        } else {
+                            $(this).hide(); // Ocultar la fila
+                        }
+                    });
 
                     // Filtrar transacciones automáticamente por la fecha seleccionada (en este caso, hoy)
                     $('#filterDate').on('change', function () {
-                        var selectedDate = $(this).val();                        
+                        var selectedDate = $(this).val();
                         if (selectedDate) {
                             // Si hay fecha seleccionada, filtramos las filas por fecha
                             $('#tablaTransacciones tbody tr').each(function () {
@@ -191,7 +191,7 @@
                                 }
                             });
                         } else {
-                   
+
                         }
                     });
                 });
