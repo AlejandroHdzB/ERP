@@ -94,12 +94,28 @@
             width: 300px;
             margin-left: 10px;
         }
+        .btn-container {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .btn-warning-custom {
+            background-color: #E67E22;
+            border-color: #E67E22;
+            color: #FFFFFF;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
         <h1>Nomina por Empleado</h1>
+        
+        <div class="btn-container">
+            <h:form>
+                <h:commandButton value="Calcular Nómina para Todos los Empleados" action="#{nominaGeneralController.calcularNominaParaTodos}" styleClass="btn btn-warning-custom" />           
+            </h:form>
+        </div>
 
         <!-- Search Container -->
         <div class="search-container">
@@ -123,7 +139,7 @@
                     </thead>
                     <tbody>
                         <!-- Iterar sobre empleados usando JSF -->
-                        <ui:repeat value="#{nominaPorEmpleadoController.empleados}" var="empleado">
+                        <ui:repeat value="#{gestionNominaEmpleadoController.empleados}" var="empleado">
                             <tr>
                                 <td>#{empleado.nombre}</td>
                                 <td>#{empleado.apellidoPaterno}</td>
@@ -131,10 +147,9 @@
                                 <td>#{empleado.salario}</td>
                                 <td>#{empleado.rol}</td>
                                 <td>
-                                    <h:commandButton value="Generar Nómina" action="#{nominaPorEmpleadoController.generarNomina(empleado.idEmpleado)}" styleClass="btn btn-accion btn-nomina">
+                                    <h:commandButton value="Generar Nómina" action="#{gestionNominaEmpleadoController.generarNomina(empleado.idEmpleado)}" styleClass="btn btn-accion btn-nomina">
                                         <f:ajax execute="@this" render="@form" />
-                                    </h:commandButton>
-                                    <h:commandButton value="Historial de Nóminas" action="#{nominaPorEmpleadoController.verHistorialNomina(empleado.idEmpleado)}" styleClass="btn btn-accion btn-editar" />
+                                    </h:commandButton>                                   
                                 </td>
                             </tr>
                         </ui:repeat>

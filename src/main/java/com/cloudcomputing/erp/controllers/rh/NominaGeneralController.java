@@ -53,6 +53,6 @@ public class NominaGeneralController implements Serializable {
     }
     
     public String verNominaPorEmpleado(){
-        return "nominaPorEmpleado.xhtml?faces-redirect=true";
+        return "gestionNominaEmpleado.xhtml?faces-redirect=true";
     }
 }

@@ -135,4 +135,27 @@ public class NominaService {
         }
         return listaNominas;
     }
+    
+    public List<NominaDTO> obtenerNominasPorEmpleado(String idEmpleado) {
+        List<NominaDTO> listaNominas = new ArrayList<>();
+        try {
+            connection.connect();
+            List<Document> documentos = connection.getCollectionData(NAME_COLLECTION);
+            for (Document documento : documentos) {
+                ObjectId objEmp = documento.getObjectId("id_empleado");
+                if (objEmp.toHexString().equals(idEmpleado)) {
+                    documento.put("_id", documento.getObjectId("_id").toHexString());
+                    documento.put("id_empleado", objEmp.toHexString());
+                    NominaDTO nomina = gson.fromJson(documento.toJson(), NominaDTO.class);
+                    listaNominas.add(nomina);
+                }
+            }
+        } catch (JsonSyntaxException e) {
+            System.err.println("Error al obtener nóminas del empleado con ID " + idEmpleado + ": " + e.getMessage());
+        } finally {
+            connection.closeConnection();
+        }
+        return listaNominas;
+    }
+
 }
