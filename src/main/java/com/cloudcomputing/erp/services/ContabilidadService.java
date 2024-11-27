@@ -2,6 +2,7 @@ package com.cloudcomputing.erp.services;
 
 import com.cloudcomputing.erp.database.Connection;
 import com.cloudcomputing.erp.dto.ContabilidadDTO;
+import com.cloudcomputing.erp.utils.GenerarPDF;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -11,7 +12,6 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.JsonSyntaxException;
-import com.mongodb.client.model.Filters;
 import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -19,12 +19,10 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 public class ContabilidadService {
@@ -40,12 +38,41 @@ public class ContabilidadService {
                 .create();
     }
 
-    public List<ContabilidadDTO> listarTransaccionesPorFecha() {
+    public List<ContabilidadDTO> listarTransacciones() {
         List<ContabilidadDTO> transacciones = new ArrayList<>();
         try {
             connection.connect();
 
             List<Document> documentos = connection.getCollectionData(NAME_COLLECTION);
+
+            // Verificar si se encontraron documentos
+            if (documentos == null || documentos.isEmpty()) {
+                return transacciones; // Retorna lista vacía si no hay datos
+            }
+
+            // Convertir los documentos a DTO
+            for (Document doc : documentos) {
+                correcionValoresJSON(doc);
+                ContabilidadDTO transaccion = gson.fromJson(doc.toJson(), ContabilidadDTO.class);
+                transacciones.add(transaccion);
+            }
+        } catch (Exception e) {
+            System.err.println("Error al listar transacciones por fecha: " + e.getMessage());
+        } finally {
+            connection.closeConnection();
+        }
+        return transacciones;
+    }
+
+    public List<ContabilidadDTO> listarTransaccionesPorFecha(String fecha) {
+        List<ContabilidadDTO> transacciones = new ArrayList<>();
+        try {
+            connection.connect();
+
+            // Crear filtro para buscar por fecha_alta
+            Document filtro = new Document("fecha_alta", fecha);
+
+            List<Document> documentos = connection.getCollectionDataFilter(NAME_COLLECTION,filtro);
 
             // Verificar si se encontraron documentos
             if (documentos == null || documentos.isEmpty()) {
@@ -87,6 +114,7 @@ public class ContabilidadService {
 
         return fechasUnicas;
     }
+
     public void agregarMovimiento(ContabilidadDTO contabilidadDTO) {
         try {
             connection.connect();
@@ -124,6 +152,50 @@ public class ContabilidadService {
         } finally {
             connection.closeConnection();
         }
+    }
+
+    public boolean generarListado(String fecha) {
+        try {
+            connection.connect();
+            List<ContabilidadDTO> movDia = listarTransaccionesPorFecha(fecha);
+
+            if (movDia == null) {
+                System.err.println("Movimeintos no encontrados con fecha: ");
+                return false;
+            }
+         
+    
+            // Generar PDF de la nómina
+            String nombreArchivo = "BosquejoLibroDiario_"+fecha+ ".pdf";
+            try {
+                String ruta = GenerarPDF.generarPdfLibro(movDia,fecha, nombreArchivo);
+                System.out.println("PDF de nómina generado: " + ruta);
+                //nominaDTO.setDocumentoNomina(nombreArchivo);
+            } catch (Exception e) {
+                System.err.println("Error al generar el PDF de la nómina: " + e.getMessage());
+                return false;
+            }
+
+           // String json = gson.toJson(nominaDTO);
+           // Document document = Document.parse(json);
+           // document.put("id_empleado", new ObjectId(nominaDTO.getIdEmpleado()));
+
+           // boolean resultado = connection.addDocument(NAME_COLLECTION, document);
+           boolean resultado = true;
+            if (resultado) {
+                System.out.println("Nómina agregada correctamente: ");
+                return true;
+            } else {
+                System.err.println("Error al agregar la nómina.");
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error al agregar nómina: " + e.getMessage());
+            return false;
+        } finally {
+            connection.closeConnection();
+        }
+
     }
 
     private void correcionValoresJSON(Document doc) throws java.text.ParseException {

@@ -18,6 +18,7 @@ public class GenerarDocController implements Serializable {
 
     private final ContabilidadService contabilidadService;
     private List<String> transacciones;
+    private List<ContabilidadDTO> movimientos;
 
     public GenerarDocController() {
         contabilidadService = new ContabilidadService();
@@ -35,8 +36,14 @@ public class GenerarDocController implements Serializable {
     }
     
     public void descargarPDF(String fecha){
-        System.out.println("Descargando PDF... "+fecha);
-        
+        boolean resultado = contabilidadService.generarListado(fecha);
+        if (resultado) {
+            //movimientos = contabilidadService.listarEmpleados();
+            System.out.println("Creo que Funciono ");
+        } else {
+            System.err.println("Error al intentar generar el PDF de la fecha"+fecha);
+         }
+            
     }
     
      public void descargarCSV(String fecha){

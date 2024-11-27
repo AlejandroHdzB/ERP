@@ -21,7 +21,7 @@ public class listaTransaccionesController implements Serializable {
         contabilidadService = new ContabilidadService();
         
         // Obtener las transacciones del día actual
-        transacciones = contabilidadService.listarTransaccionesPorFecha();
+        transacciones = contabilidadService.listarTransacciones();
 
         if (transacciones == null || transacciones.isEmpty()) {
             System.out.println("No se encontraron transacciones para hoy.");
