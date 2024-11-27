@@ -11,7 +11,7 @@ import java.net.http.HttpResponse;
 @Named
 @RequestScoped
 public class ApiLoginEmpleados {
-    public  static ResultadoRespuesta consultar(String email, String password) {
+    public static ResultadoRespuesta consultar(String email, String password) {
         try {
             HttpClient client = HttpClient.newHttpClient();
             String jsonBody = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
