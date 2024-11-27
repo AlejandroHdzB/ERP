@@ -4,6 +4,7 @@ import com.cloudcomputing.erp.dto.ContabilidadDTO;
 import com.cloudcomputing.erp.services.ContabilidadService;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.inject.Named;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 import org.bson.types.ObjectId;
@@ -44,13 +45,14 @@ public class RegistrarMovimientoController {
     transacciones.setCuenta("1234567890");  // Número de cuenta estático
     transacciones.setDescripcion("Pago de factura");  // Descripción estática*/
     //Prueba Movimiento Compra
-    //transacciones.setFechaMov(new Date());  // Fecha actual (puedes asignar una fecha específica si es necesario)
-    //transacciones.setTipoMov("Debe");     // Ejemplo de tipo de movimiento
-    //transacciones.setMonto(1000.0);          // Monto estático
-    //transacciones.setCuenta("1234567890");  // Número de cuenta estático
-    //transacciones.setDescripcion("Pago a Proveedores"); 
+    transacciones.setFechaMov(new Date());  // Fecha actual (puedes asignar una fecha específica si es necesario)
+    transacciones.setTipoMov("Debe");     // Ejemplo de tipo de movimiento
+    transacciones.setFechaAlta(LocalDate.now());   // Ejemplo de tipo de movimiento
+    transacciones.setMonto(1000.0);          // Monto estático
+    transacciones.setCuenta("1234567890");  // Número de cuenta estático
+   transacciones.setDescripcion("Pago a Proveedores"); 
 
-    //contabilidadService.agregarMovimiento(transacciones);
+    contabilidadService.agregarMovimiento(transacciones);
     
     //return "dashboard.xhtml?faces-redirect=true";
      }
