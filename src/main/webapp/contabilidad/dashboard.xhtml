@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Dashboard - Contabilidad</title>
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico" />
+        <style>
+            body {
+                background-color: #ECF0F1;
+                font-family: 'Arial', sans-serif;
+            }
+
+            h1 {
+                text-align: center;
+                margin: 20px 0;
+                color: #343a40;
+            }
+
+            .container {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                margin: 20px auto;
+                width: 90%;
+            }
+
+            .card {
+                background-color: #ffffff;
+                width: 300px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                padding: 20px;
+                margin: 10px;
+                text-align: center;
+                
+            }
+
+            .card-title {
+                font-size: 18px;
+                font-weight: bold;
+                color: #2C3E50;
+                margin-bottom: 10px;
+            }
+
+            .btn-accion {
+                padding: 10px 15px;
+                margin: 5px;
+                border-radius: 4px;
+                font-size: 14px;
+                text-decoration: none;
+                display: inline-block;
+                width: 100%;
+                margin-top: auto; /* Esto empuja el botón hacia abajo */
+            }
+
+            .btn-nomina {
+                background-color: #3498DB;
+                color: #FFFFFF;
+            }
+
+            .btn-asistencia {
+                background-color: #9B59B6;
+                color: #FFFFFF;
+            }
+
+            .btn-empleados {
+                background-color: #2ECC71;
+                color: #FFFFFF;
+            }
+
+
+        </style>
+    </h:head>
+    <h:body>
+
+        <h1>Dashboard de Contabilidad</h1>
+
+        <div class="container">
+            <!-- Card Agregar -->
+            <div class="card">
+                <div class="card-title">Listar Movimientos</div>
+                <img src="../images/listarLogo.png" alt="Logo ITTExpress" class="img-fluid" style="max-width: 100%; margin-bottom: 15px;" />
+
+                <h:form>
+                    <h:commandButton value="Seleccionar" action="listaTransacciones.xhtml?faces-redirect=true" styleClass="btn-accion btn-empleados"/>
+                </h:form>
+            </div>
+
+            <!-- Card Empleados -->
+            <div class="card">
+                <div class="card-title">Descargar Documentos de Movimientos</div>
+                <img src="../images/logoGen.png" alt="Logo ITTExpress" class="img-fluid" style="max-width: 50%;" />
+                <h:form>
+                    <h:commandButton value="Seleccionar" action="generarPdf.xhtml?faces-redirect=true" styleClass="btn-accion btn-empleados"/>
+                </h:form>
+            </div>
+
+        </div>
+
+    </h:body>
+</html>

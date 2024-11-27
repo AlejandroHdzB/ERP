@@ -58,7 +58,7 @@ public class Connection {
         }
         return dataList;
     }
-    
+
     public List<Document> getCollectionDataFilter(String collectionName, Bson filter) {
         List<Document> dataList = new ArrayList<>();
         try {
@@ -69,7 +69,21 @@ public class Connection {
         }
         return dataList;
     }
-    
+
+    public List<String> getCollectionDataDistinct(String collectionName, String fieldName) {
+        List<String> distinctValues = new ArrayList<>();
+        try {
+            MongoCollection<Document> collection = database.getCollection(collectionName);
+
+            // Realizar consulta distinct para obtener solo el campo especificado
+            collection.distinct(fieldName, String.class).forEach(distinctValues::add);
+
+        } catch (Exception e) {
+            System.err.println("Error al obtener datos distintos de la colección: " + e.getMessage());
+        }
+        return distinctValues;
+    }
+
     public Document getDocumentById(String id, String collectionName) {
         try {
             MongoCollection<Document> collection = database.getCollection(collectionName);
@@ -84,7 +98,7 @@ public class Connection {
             return null;
         }
     }
-    
+
     public boolean addDocument(String collectionName, Document document) {
         try {
             MongoCollection<Document> collection = database.getCollection(collectionName);
@@ -130,7 +144,6 @@ public class Connection {
         }
     }
 
-
     public boolean deleteDocument(String collectionName, String id) {
         try {
             MongoCollection<Document> collection = database.getCollection(collectionName);
@@ -150,7 +163,6 @@ public class Connection {
             return false;
         }
     }
-
 
     public void printCollectionData(String collectionName) {
         List<Document> dataList = getCollectionData(collectionName);

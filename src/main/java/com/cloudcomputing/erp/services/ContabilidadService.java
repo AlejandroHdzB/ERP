@@ -3,9 +3,18 @@ package com.cloudcomputing.erp.services;
 import com.cloudcomputing.erp.database.Connection;
 import com.cloudcomputing.erp.dto.ContabilidadDTO;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+import com.google.gson.JsonSerializationContext;
+import com.google.gson.JsonSerializer;
 import com.google.gson.JsonSyntaxException;
 import com.mongodb.client.model.Filters;
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,18 +31,19 @@ public class ContabilidadService {
 
     private final String NAME_COLLECTION = "contabilidad";
     private final Connection connection = new Connection();
-    private final Gson gson = new Gson();
+    private final Gson gson;
+
+    public ContabilidadService() {
+        gson = new GsonBuilder()
+                .registerTypeAdapter(LocalDate.class, (JsonDeserializer<LocalDate>) (JsonElement json, Type typeOfT, JsonDeserializationContext context) -> LocalDate.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE))
+                .registerTypeAdapter(LocalDate.class, (JsonSerializer<LocalDate>) (LocalDate date, Type typeOfSrc, JsonSerializationContext context) -> new JsonPrimitive(date.format(DateTimeFormatter.ISO_LOCAL_DATE)))
+                .create();
+    }
 
     public List<ContabilidadDTO> listarTransaccionesPorFecha() {
         List<ContabilidadDTO> transacciones = new ArrayList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX"); // Definir el formato de fecha
-        Date fechaInicio = null;
-        Date fechaFin = null;
-
         try {
             connection.connect();
-
-           
 
             List<Document> documentos = connection.getCollectionData(NAME_COLLECTION);
 
@@ -56,6 +66,27 @@ public class ContabilidadService {
         return transacciones;
     }
 
+    public List<String> listarTransaccionesPorDistinct() {
+        List<String> fechasUnicas = new ArrayList<>();
+        String fieldName = "fecha_alta"; // Campo de fecha para obtener los valores distintos
+
+        try {
+            connection.connect();
+            // Obtener las fechas distintas de la colección
+            fechasUnicas = connection.getCollectionDataDistinct(NAME_COLLECTION, fieldName);
+
+            // Verificar si no se encontraron fechas
+            if (fechasUnicas == null || fechasUnicas.isEmpty()) {
+                return fechasUnicas; // Retorna lista vacía si no hay fechas
+            }
+        } catch (Exception e) {
+            System.err.println("Error al listar transacciones por fecha: " + e.getMessage());
+        } finally {
+            connection.closeConnection();
+        }
+
+        return fechasUnicas;
+    }
     public void agregarMovimiento(ContabilidadDTO contabilidadDTO) {
         try {
             connection.connect();
@@ -65,7 +96,7 @@ public class ContabilidadService {
             Document document = Document.parse(json);
 
             // Reemplazar el campo fechaMov con el tipo correcto
-           if (contabilidadDTO.getFechaMov() != null) {
+            if (contabilidadDTO.getFechaMov() != null) {
                 // Ajustar la fecha a la zona horaria de México
                 ZonedDateTime zonedDateTime = contabilidadDTO.getFechaMov()
                         .toInstant()
@@ -79,7 +110,6 @@ public class ContabilidadService {
 
                 System.out.println("Fecha ajustada y formateada como String sin zona horaria: " + fechaFormateada);
             }
-
 
             // Guardar el documento en la colección
             boolean resultado = connection.addDocument("contabilidad", document);
@@ -116,6 +146,14 @@ public class ContabilidadService {
                     // Si ya es un Date, simplemente lo usamos tal cual
                     Date fechaMov = (Date) fechaMovObj;
                     doc.put("fecha_mov", fechaMov.toInstant().toString());
+                }
+            }
+            if (doc.containsKey("fecha_alta")) {
+                Object fechaAltaField = doc.get("fecha_alta");
+                if (fechaAltaField instanceof Date) {
+                    Date fechaAlta = (Date) fechaAltaField;
+                    LocalDate localDateAlta = fechaAlta.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                    doc.put("fecha_alta", localDateAlta.toString());
                 }
             }
 
