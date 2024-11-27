@@ -5,10 +5,30 @@
 
 package com.cloudcomputing.erp.dto;
 
-/**
- *
- * @author wolf_
- */
-public class PedidoDTO {
+import java.time.LocalDate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+public class PedidoDTO {
+    private String idPedido;
+    private LocalDate fechaPedido;
+    private String estatus;
+    private double costoOperacion;
+    private double subtotal;
+    private double ganancia;
+    private double costoTotal;
+    private DetallesPaqueteDTO detallesPaquete;
+    private double peso;
+    private String contenido;
+    private double valorDeclarado;
+    private boolean fragil;
+    private SeguroDTO seguro;
+    private DireccionDTO origen;
+    private DireccionDTO destino;
+    private boolean internacional;
+    private ImpuestoDTO impuestos;
 }

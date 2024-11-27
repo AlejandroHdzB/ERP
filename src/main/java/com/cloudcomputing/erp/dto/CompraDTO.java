@@ -5,10 +5,18 @@
 
 package com.cloudcomputing.erp.dto;
 
-/**
- *
- * @author wolf_
- */
-public class CompraDTO {
+import java.time.LocalDate;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
+public class CompraDTO {
+    private String idcompra;
+    private String idproducto;
+    private LocalDate fechacompra;
+    private double montoTotal;
+    private DetallesPoductoDTO detalleproducto;
 }
