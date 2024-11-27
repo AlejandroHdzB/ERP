@@ -1,24 +1,20 @@
 package com.cloudcomputing.erp.apiConnections;
 
 import com.cloudcomputing.erp.configurations.ApiAccess;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Named;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-@Named
-@RequestScoped
-public class ApiLoginEmpleados {
+public class ApiValidacionEmpleados {
     public static ResultadoRespuesta consultar(String email, String password) {
         try {
             HttpClient client = HttpClient.newHttpClient();
             String jsonBody = String.format("{\"email\":\"%s\",\"password\":\"%s\"}", email, password);
 
             HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(ApiAccess.URL_BASE_API+"/ValidacionUsuarios/api/login"))
+                    .uri(URI.create(ApiAccess.URL_BASE_API + "/ValidacionUsuarios/api/login"))
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(jsonBody))
                     .build();
@@ -37,5 +33,4 @@ public class ApiLoginEmpleados {
             return new ResultadoRespuesta(500, "Error: " + e.getMessage());
         }
     }
-
 }

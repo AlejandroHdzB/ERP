@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Named
 @RequestScoped
@@ -19,8 +20,11 @@ public class ListaEmpleadosController implements Serializable {
 
     public ListaEmpleadosController() {
         empleadoService = new EmpleadoService();
-        empleados = empleadoService.listarEmpleados();
-
+        // Filtrar empleados para mostrar solo aquellos con estatus "activo"
+        empleados = empleadoService.listarEmpleados().stream()
+                .filter(empleado -> "activo".equalsIgnoreCase(empleado.getEstatus()))
+                .collect(Collectors.toList());
+        
         if (empleados == null) {
             empleados = new ArrayList<>();
         } else {

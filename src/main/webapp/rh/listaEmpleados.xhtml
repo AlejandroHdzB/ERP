@@ -94,6 +94,17 @@
             width: 300px;
             margin-left: 10px;
         }
+
+        .status-icon {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .active-status {
+            background-color: #28a745; /* Green for active status */
+        }
     </style>
 </head>
 
@@ -119,6 +130,7 @@
                             <th>Email</th>
                             <th>Teléfono</th>
                             <th>Rol</th>
+                            <th>Estatus</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -132,6 +144,9 @@
                                 <td>#{empleado.email}</td>
                                 <td>#{empleado.telefono}</td>
                                 <td>#{empleado.rol}</td>
+                                <td>
+                                    <span class="status-icon active-status"></span>
+                                </td>
                                 <td>
                                     <h:commandButton value="Eliminar" action="#{listaEmpleadosController.eliminarEmpleado(empleado.idEmpleado)}" styleClass="btn btn-accion btn-eliminar">
                                         <f:ajax execute="@this" render="@form" />

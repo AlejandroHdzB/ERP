@@ -6,6 +6,8 @@ import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import com.cloudcomputing.erp.apiConnections.ResultadoRespuesta;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,10 +39,11 @@ public class LoginController {
         ResultadoRespuesta response = ApiLoginEmpleados.consultar(email, password);
 
         String body = response.getMensaje();
+        Gson gson = new Gson();
+        JsonObject resObj = gson.fromJson(body, JsonObject.class);
         
-
         if (response.getEstado() == 200) {
-            String rol = response.getMensaje();
+            String rol = resObj.get("role").getAsString();
 
             Map<String, String> roleToPageMap = new HashMap<>();
             roleToPageMap.put("Ventas", "/ventas/index.xhtml");
