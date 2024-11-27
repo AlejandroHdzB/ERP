@@ -6,6 +6,7 @@
 package com.cloudcomputing.erp.dto;
 
 import java.time.LocalDate;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,5 +31,5 @@ public class PedidoDTO {
     private DireccionDTO origen;
     private DireccionDTO destino;
     private boolean internacional;
-    private ImpuestoDTO impuestos;
+    private List<ImpuestoDTO> impuestos;
 }
