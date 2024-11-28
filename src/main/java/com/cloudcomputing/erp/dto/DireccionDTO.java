@@ -5,6 +5,7 @@
 package com.cloudcomputing.erp.dto;
 
 import java.time.LocalDate;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@Data
 public class DireccionDTO {
     private String pais;
     private String estado;

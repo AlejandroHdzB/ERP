@@ -4,11 +4,17 @@
  */
 
 package com.cloudcomputing.erp.services;
-
-/**
- *
- * @author wolf_
- */
+ 
+import com.cloudcomputing.erp.dto.DimensionesDTO;
+import com.cloudcomputing.erp.dto.ProductoDTO;
+import jakarta.ejb.Stateless;
+ 
+@Stateless
 public class ProductoService {
 
+    public ProductoDTO determinarEmpaque(DimensionesDTO dimensiones) {
+        // Implementa la lógica para determinar el empaque
+        return new ProductoDTO(); // Devuelve un objeto simulado por ahora
+
+    }
 }
