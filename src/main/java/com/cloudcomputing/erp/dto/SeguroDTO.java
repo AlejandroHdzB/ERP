@@ -7,10 +7,12 @@ package com.cloudcomputing.erp.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.Data;
 
 @Getter
-@Setter
+@Setter       
 @NoArgsConstructor
+@Data
 public class SeguroDTO {
     private double costoSeguro;
     private double montoCubierto;

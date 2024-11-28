@@ -5,22 +5,22 @@
 
 package com.cloudcomputing.erp.dto;
 
-import java.time.LocalDate;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@NoArgsConstructor
+import com.cloudcomputing.erp.dto.DetallesPaqueteDTO;
+import com.cloudcomputing.erp.dto.DimensionesDTO;
+import lombok.Data;
+ 
+@Data
 public class ProductoDTO {
-    private String idInventario;
-    private double cantidadDisponible;
-    private String unidadMedida;
-    private String moneda;
-    private double reordenMinimo;
-    private int tipoInsumo;
-    private DetallesEmpaque detallesEmpaque;
-    private Proveedor proveedor;
-    private LocalDate fechaUltimaActualizacion;
+    private String idProducto;
+    private String nombre;
+    private double precio;
+    private DimensionesDTO dimensiones;
+    private double capacidad;
+ 
+    public DetallesPaqueteDTO toDetallesPaqueteDTO() {
+        DetallesPaqueteDTO detallesPaquete = new DetallesPaqueteDTO();
+        detallesPaquete.setIdPaquete(this.idProducto);
+        detallesPaquete.setDimensiones(this.dimensiones);
+        return detallesPaquete;
+    }
 }
