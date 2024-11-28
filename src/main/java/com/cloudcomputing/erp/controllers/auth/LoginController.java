@@ -36,7 +36,7 @@ public class LoginController {
         RespuestaLoginEmpleados respuesta = ApiLoginEmpleados.consultar(email, password);
         
         if (respuesta != null && respuesta.isSuccess()) {
-            String rol = "Recursos Humanos";
+            String rol = respuesta.getRole();
 
             Map<String, String> roleToPageMap = new HashMap<>();
             roleToPageMap.put("Ventas", "/ventas/index.xhtml");
