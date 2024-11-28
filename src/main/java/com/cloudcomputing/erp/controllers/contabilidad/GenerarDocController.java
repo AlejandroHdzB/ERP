@@ -36,7 +36,7 @@ public class GenerarDocController implements Serializable {
     }
     
     public void descargarPDF(String fecha){
-        boolean resultado = contabilidadService.generarListado(fecha);
+        boolean resultado = contabilidadService.generarListadoPDF(fecha);
         if (resultado) {
             //movimientos = contabilidadService.listarEmpleados();
             System.out.println("Creo que Funciono ");
@@ -47,10 +47,10 @@ public class GenerarDocController implements Serializable {
     }
     
      public void descargarCSV(String fecha){
-         boolean resultado = contabilidadService.generarListado(fecha);
+         boolean resultado = contabilidadService.generarListadoCSV(fecha);
         if (resultado) {
             //movimientos = contabilidadService.listarEmpleados();
-            System.out.println("Creo que Funciono ");
+            System.out.println("Creo que Funciono CSV");
         } else {
             System.err.println("Error al intentar generar el PDF de la fecha"+fecha);
          }

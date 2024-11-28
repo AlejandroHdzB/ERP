@@ -2,6 +2,7 @@ package com.cloudcomputing.erp.services;
 
 import com.cloudcomputing.erp.database.Connection;
 import com.cloudcomputing.erp.dto.ContabilidadDTO;
+import com.cloudcomputing.erp.utils.GenerarCSV;
 import com.cloudcomputing.erp.utils.GenerarPDF;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -72,7 +73,7 @@ public class ContabilidadService {
             // Crear filtro para buscar por fecha_alta
             Document filtro = new Document("fecha_alta", fecha);
 
-            List<Document> documentos = connection.getCollectionDataFilter(NAME_COLLECTION,filtro);
+            List<Document> documentos = connection.getCollectionDataFilter(NAME_COLLECTION, filtro);
 
             // Verificar si se encontraron documentos
             if (documentos == null || documentos.isEmpty()) {
@@ -154,7 +155,7 @@ public class ContabilidadService {
         }
     }
 
-    public boolean generarListado(String fecha) {
+    public boolean generarListadoPDF(String fecha) {
         try {
             connection.connect();
             List<ContabilidadDTO> movDia = listarTransaccionesPorFecha(fecha);
@@ -163,12 +164,11 @@ public class ContabilidadService {
                 System.err.println("Movimeintos no encontrados con fecha: ");
                 return false;
             }
-         
-    
+
             // Generar PDF de la nómina
-            String nombreArchivo = "BosquejoLibroDiario_"+fecha+ ".pdf";
+            String nombreArchivo = "BosquejoLibroDiario_" + fecha + ".pdf";
             try {
-                String ruta = GenerarPDF.generarPdfLibro(movDia,fecha, nombreArchivo);
+                String ruta = GenerarPDF.generarPdfLibro(movDia, fecha, nombreArchivo);
                 System.out.println("PDF de nómina generado: " + ruta);
                 //nominaDTO.setDocumentoNomina(nombreArchivo);
             } catch (Exception e) {
@@ -176,12 +176,44 @@ public class ContabilidadService {
                 return false;
             }
 
-           // String json = gson.toJson(nominaDTO);
-           // Document document = Document.parse(json);
-           // document.put("id_empleado", new ObjectId(nominaDTO.getIdEmpleado()));
+            boolean resultado = true;
+            if (resultado) {
+                System.out.println("Nómina agregada correctamente: ");
+                return true;
+            } else {
+                System.err.println("Error al agregar la nómina.");
+                return false;
+            }
+        } catch (Exception e) {
+            System.err.println("Error al agregar nómina: " + e.getMessage());
+            return false;
+        } finally {
+            connection.closeConnection();
+        }
 
-           // boolean resultado = connection.addDocument(NAME_COLLECTION, document);
-           boolean resultado = true;
+    }
+
+    public boolean generarListadoCSV(String fecha) {
+        try {
+            connection.connect();
+            List<ContabilidadDTO> movDia = listarTransaccionesPorFecha(fecha);
+
+            if (movDia == null) {
+                System.err.println("Movimeintos no encontrados con fecha: ");
+                return false;
+            }
+
+            // Generar CSV
+            String nombreArchivoCSV = "BosquejoLibroDiario_" + fecha + ".csv";
+            try {
+               String ruta= GenerarCSV.generarCsvLibro(movDia, fecha, nombreArchivoCSV);
+                System.out.println("CSV generado: " + nombreArchivoCSV);
+            } catch (Exception e) {
+                System.err.println("Error al generar el CSV: " + e.getMessage());
+                return false;
+            }
+
+            boolean resultado = true;
             if (resultado) {
                 System.out.println("Nómina agregada correctamente: ");
                 return true;
