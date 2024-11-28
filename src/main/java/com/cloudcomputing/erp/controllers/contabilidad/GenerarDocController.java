@@ -47,7 +47,13 @@ public class GenerarDocController implements Serializable {
     }
     
      public void descargarCSV(String fecha){
-        System.out.println("Descargando CSV... "+fecha);
+         boolean resultado = contabilidadService.generarListado(fecha);
+        if (resultado) {
+            //movimientos = contabilidadService.listarEmpleados();
+            System.out.println("Creo que Funciono ");
+        } else {
+            System.err.println("Error al intentar generar el PDF de la fecha"+fecha);
+         }
         
     }
 

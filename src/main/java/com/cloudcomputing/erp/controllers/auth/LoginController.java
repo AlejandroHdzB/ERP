@@ -1,13 +1,11 @@
 package com.cloudcomputing.erp.controllers.auth;
 
 import com.cloudcomputing.erp.apiConnections.ApiLoginEmpleados;
+import com.cloudcomputing.erp.apiConnections.RespuestaLoginEmpleados;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-import com.cloudcomputing.erp.apiConnections.ResultadoRespuesta;
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,15 +33,10 @@ public class LoginController {
     }
 
     public String login() {
-
-        ResultadoRespuesta response = ApiLoginEmpleados.consultar(email, password);
-
-        String body = response.getMensaje();
-        Gson gson = new Gson();
-        JsonObject resObj = gson.fromJson(body, JsonObject.class);
+        RespuestaLoginEmpleados respuesta = ApiLoginEmpleados.consultar(email, password);
         
-        if (response.getEstado() == 200) {
-            String rol = resObj.get("role").getAsString();
+        if (respuesta != null && respuesta.isSuccess()) {
+            String rol = "Recursos Humanos";
 
             Map<String, String> roleToPageMap = new HashMap<>();
             roleToPageMap.put("Ventas", "/ventas/index.xhtml");
