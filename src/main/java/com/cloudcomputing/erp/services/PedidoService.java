@@ -22,7 +22,7 @@ public class PedidoService {
         validarDatosPreliminares(pedido);
  
         // Determinar el empaque adecuado CHECAR
-        ProductoDTO empaque = productoService.determinarEmpaque(pedido.getDetallesPaquete().getDimensiones());
+        ProductoDTO empaque = productoService.determinarEmpaque(pedido.getDetallesPaquete().getDimensiones(),pedido.getPeso());
  
         // Validar si aplica tarifa aduanera
         boolean tarifaAduanera = !pedido.getOrigen().getPais().equalsIgnoreCase(pedido.getDestino().getPais());
