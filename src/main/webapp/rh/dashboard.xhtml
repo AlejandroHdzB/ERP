@@ -67,7 +67,7 @@
             color: #FFFFFF;
         }
 
-        .btn-reportes {
+        .btn-agregar {
             background-color: #E67E22;
             color: #FFFFFF;
         }
@@ -87,7 +87,7 @@
         <div class="card">
             <div class="card-title">Agregar empleado</div>
             <h:form>
-                <h:commandButton value="Agregar" action="crearEmpleado.xhtml?faces-redirect=true" styleClass="btn-accion btn-empleados"/>
+                <h:commandButton value="Agregar" action="crearEmpleado.xhtml?faces-redirect=true" styleClass="btn-accion btn-agregar"/>
             </h:form>
         </div>
 
@@ -104,14 +104,6 @@
             <div class="card-title">Nómina</div>
             <h:form>
                 <h:commandButton value="Ver Nómina" action="nominaGeneral.xhtml?faces-redirect=true" styleClass="btn-accion btn-nomina"/>
-            </h:form>
-        </div>
-
-        <!-- Card Reportes -->
-        <div class="card">
-            <div class="card-title">Reportes</div>
-            <h:form>
-                <h:commandButton value="Generar Reportes" action="listaEmpleados.xhtml?faces-redirect=true" styleClass="btn-accion btn-reportes"/>
             </h:form>
         </div>
     </div>
