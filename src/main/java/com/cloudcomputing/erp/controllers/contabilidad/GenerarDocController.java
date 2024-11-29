@@ -26,16 +26,8 @@ public class GenerarDocController implements Serializable {
 
     public GenerarDocController() {
         contabilidadService = new ContabilidadService();
-        movimientos = new ArrayList();
         // Obtener las fechas únicas (fechas de alta de las transacciones)
         transacciones = contabilidadService.listarTransaccionesPorDistinct();
-        transacciones.stream().forEach(mov -> {
-            ContabilidadDTO trans = new ContabilidadDTO();
-            String url = "http://" + SftpConfig.SFTP_HOST + "/icons" + "/" + SftpConfig.REMOTE_DIR + "BosquejoLibroDiario_" + mov;
-            trans.setDocumentoURL(url);
-            movimientos.add(trans);
-
-        });
 
         // Verificar si no hay fechas
         if (transacciones == null || transacciones.isEmpty()) {

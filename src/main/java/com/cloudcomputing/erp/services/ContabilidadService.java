@@ -120,7 +120,7 @@ public class ContabilidadService {
         return fechasUnicas;
     }
 
-    public void agregarMovimiento(ContabilidadDTO contabilidadDTO) {
+    public boolean agregarMovimiento(ContabilidadDTO contabilidadDTO) {
         try {
             connection.connect();
 
@@ -145,15 +145,18 @@ public class ContabilidadService {
             }
 
             // Guardar el documento en la colección
-            boolean resultado = connection.addDocument("contabilidad", document);
+             boolean resultado = connection.addDocument("contabilidad", document);
 
             if (resultado) {
                 System.out.println("Movimiento agregado correctamente: " + contabilidadDTO);
+                 return true;
             } else {
                 System.err.println("Error al agregar el movimiento.");
+                 return false;
             }
         } catch (Exception e) {
             System.err.println("Error al agregar movimiento: " + e.getMessage());
+            return false;
         } finally {
             connection.closeConnection();
         }
