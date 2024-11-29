@@ -1,6 +1,6 @@
 package com.cloudcomputing.erp.controllers.auth;
 
-import com.cloudcomputing.erp.apiConnections.ApiLoginEmpleados;
+import com.cloudcomputing.erp.apiConnections.apiLoginEmpleados;
 import com.cloudcomputing.erp.apiConnections.RespuestaLoginEmpleados;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
@@ -33,7 +33,7 @@ public class LoginController {
     }
 
     public String login() {
-        RespuestaLoginEmpleados respuesta = ApiLoginEmpleados.consultar(email, password);
+        RespuestaLoginEmpleados respuesta = apiLoginEmpleados.consultar(email, password);
         
         if (respuesta != null && respuesta.isSuccess()) {
             String rol = respuesta.getRole();
