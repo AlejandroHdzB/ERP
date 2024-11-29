@@ -5,14 +5,15 @@ import com.cloudcomputing.erp.dto.RolDTO;
 import com.cloudcomputing.erp.services.EmpleadoService;
 import com.cloudcomputing.erp.services.RolService;
 import jakarta.annotation.PostConstruct;
-import jakarta.enterprise.context.RequestScoped;
+import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Named;
+import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Named
-@RequestScoped
-public class CrearEmpleadoController {
+@ViewScoped
+public class CrearEmpleadoController implements Serializable {
     private final EmpleadoService empleadoService;
     private final RolService rolService;
     private EmpleadoDTO empleado;

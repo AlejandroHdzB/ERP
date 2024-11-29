@@ -179,7 +179,10 @@
             </div>
 
             <!-- Botón para Crear Empleado -->
-            <h:commandButton value="Crear Empleado" action="#{crearEmpleadoController.crearEmpleado()}" styleClass="btn btn-primary" />
+            <h:commandButton value="Crear Empleado" action="#{crearEmpleadoController.crearEmpleado()}" styleClass="btn btn-primary">
+                <f:ajax execute="@form" render="@form"/>
+            </h:commandButton>
+
         </h:form>
     </div>
 

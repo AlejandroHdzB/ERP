@@ -176,7 +176,9 @@
             </div>
 
             <!-- Botón para Guardar Cambios -->
-            <h:commandButton value="Guardar Cambios" action="#{editarEmpleadoController.guardarCambios()}" styleClass="btn btn-primary" process="@this" />
+            <h:commandButton value="Guardar Cambios" action="#{editarEmpleadoController.guardarCambios()}" styleClass="btn btn-primary">
+                <f:ajax execute="@form" render="@form"/>
+            </h:commandButton>
         </h:form>
     </div>
 
