@@ -12,7 +12,7 @@ import java.net.http.HttpResponse;
 
 @Named
 @RequestScoped
-public class apiLoginEmpleados {
+public class ApiInicioSesion {
     public static RespuestaLoginEmpleados consultar(String email, String password) {
         try {
             HttpClient client = HttpClient.newHttpClient();

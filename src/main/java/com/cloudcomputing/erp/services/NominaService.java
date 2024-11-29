@@ -59,13 +59,17 @@ public class NominaService {
 
             // Generar PDF de la nómina
             String nombreArchivo = "nomina_" + nominaDTO.getIdEmpleado() + "_" + LocalDate.now() + ".pdf";
-            String ruta = GenerarPDF.generarPdfNomina(nominaDTO, empleado, nombreArchivo);
-            System.out.println(ruta);
-            //UploadServlet subir = new UploadServlet();
-            // InputStream fileContent = Files.newInputStream(Paths.get(ruta));
-            // subir.uploadFile(nombreArchivo, fileContent);
-            System.out.println("PDF de nómina generado: " + ruta);
-            nominaDTO.setDocumentoNomina(nombreArchivo);
+             try {
+                String ruta = GenerarPDF.generarPdfNomina(nominaDTO, empleado, nombreArchivo);
+                UploadServlet subir = new UploadServlet();
+                InputStream fileContent = Files.newInputStream(Paths.get(ruta));
+                subir.uploadFile(nombreArchivo, fileContent);
+                nominaDTO.setDocumentoNomina(nombreArchivo);
+            } catch (Exception e) {
+                System.err.println("Error al generar el PDF de la nómina: " + e.getMessage());
+                return false;
+            }
+           
 
             String json = gson.toJson(nominaDTO);
             Document document = Document.parse(json);
