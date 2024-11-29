@@ -4,12 +4,99 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title>Crear Producto</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #011333;
+            margin-bottom: 30px;
+        }
+
+        .form-label {
+            font-weight: bold;
+            color: #2C3E50;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #011333;
+            color: #ECF0F1;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #34495E;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="container">
+        <h1>Registro de Producto</h1>
+        <h:form>
+            <div class="form-group">
+                <h:outputLabel for="idProducto" class="form-label" value="ID de Producto:" />
+                <h:inputText id="idProducto" value="#{altaProductoController.producto.idProducto}" required="true" />
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="nombre" class="form-label" value="Nombre:" />
+                <h:inputText id="nombre" value="#{altaProductoController.producto.nombre}" required="true" />
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="precio" class="form-label" value="Precio:" />
+                <h:inputText id="precio" value="#{altaProductoController.producto.precio}" required="true" />
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="alto" class="form-label" value="Dimensiones (Alto):" />
+                <h:inputText id="alto" value="#{altaProductoController.producto.dimensiones.alto}" required="true" />
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="ancho" class="form-label" value="Dimensiones (Ancho):" />
+                <h:inputText id="ancho" value="#{altaProductoController.producto.dimensiones.ancho}" required="true" />
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="largo" class="form-label" value="Dimensiones (Largo):" />
+                <h:inputText id="largo" value="#{altaProductoController.producto.dimensiones.largo}" required="true" />
+            </div>
+
+            <div class="form-group">
+                <h:outputLabel for="capacidad" class="form-label" value="Capacidad:" />
+                <h:inputText id="capacidad" value="#{altaProductoController.producto.capacidad}" required="true" />
+            </div>
+
+            <h:commandButton value="Registrar Producto" action="#{altaProductoController.crearProducto}" class="btn" />
+        </h:form>
+    </div>
+</h:body>
 </html>
+

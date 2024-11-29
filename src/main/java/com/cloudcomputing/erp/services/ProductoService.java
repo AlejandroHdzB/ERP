@@ -10,6 +10,8 @@ import com.cloudcomputing.erp.dto.ProductoDTO;
 import jakarta.enterprise.context.ApplicationScoped;
 import java.util.List;
 import java.util.Optional;
+import com.cloudcomputing.erp.database.Connection;
+import org.bson.Document;
 
 @ApplicationScoped
 public class ProductoService {
@@ -35,5 +37,30 @@ public class ProductoService {
         return dimensionesPaquete.getAlto() <= dimensionesEmpaque.getAlto()
             && dimensionesPaquete.getAncho() <= dimensionesEmpaque.getAncho()
             && dimensionesPaquete.getLargo() <= dimensionesEmpaque.getLargo();
+    }
+    
+    private final Connection connection;
+    public ProductoService() {
+        this.connection = new Connection();
+        this.connection.connect(); // Aseguramos la conexión a la base de datos
+    }
+    
+    public void crearProducto(ProductoDTO productoDTO) {
+        // Crear el documento para el producto
+        Document productoDoc = new Document()
+                .append("idProducto", productoDTO.getIdProducto())
+                .append("nombre", productoDTO.getNombre())
+                .append("precio", productoDTO.getPrecio())
+                .append("dimensiones", new Document()
+                        .append("alto", productoDTO.getDimensiones().getAlto())
+                        .append("ancho", productoDTO.getDimensiones().getAncho())
+                        .append("largo", productoDTO.getDimensiones().getLargo()))
+                .append("capacidad", productoDTO.getCapacidad());
+
+        // Usar la conexión para agregar el documento
+        boolean success = connection.addDocument("productos", productoDoc);
+        if (!success) {
+            throw new RuntimeException("Error al agregar el producto a la base de datos");
+        }
     }
 }
