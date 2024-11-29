@@ -4,12 +4,88 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title>Reporte de Compras</title>
+        <style>
+            body {
+                background-color: #ECF0F1;
+                font-family: 'Arial', sans-serif;
+            }
+
+            h1 {
+                text-align: center;
+                margin: 20px 0;
+                color: #343a40;
+            }
+
+            .container {
+                background: #ECF0F1;
+            }
+
+            #tabla_Contenedor {
+                margin-top: 1%;
+                background: #ffffff;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            #tablaEmpleados {
+                margin: 10px auto;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            th {
+                background-color: #2C3E50 !important;
+                color: white !important;
+                padding: 10px;
+            }
+
+            td {
+                background-color: white;
+                padding: 10px;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            tr:hover td {
+                background-color: #e9ecef;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h1>Reporte de Compras</h1>
+            <div id="tabla_Contenedor">
+                <h:form id="comprasReporteForm">
+                    <h:dataTable value="#{compraController.listaCompras}" var="compra" border="1">
+                        <tr>
+                            <h:column>
+                                <f:facet name="header">ID Compra</f:facet>
+                                <td>#{compra.idcompra}</td>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">ID Producto</f:facet>
+                                <td>#{compra.idproducto}</td>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Fecha de Compra</f:facet>
+                                <td>#{compra.fechacompra}</td>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">Monto Total</f:facet>
+                                <td>#{compra.montoTotal}</td>
+                            </h:column>
+                        </tr>
+
+                    </h:dataTable>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
 </html>
+

@@ -39,10 +39,10 @@ public class LoginController {
             String rol = respuesta.getRole();
 
             Map<String, String> roleToPageMap = new HashMap<>();
-            roleToPageMap.put("Ventas", "/ventas/index.xhtml");
+            roleToPageMap.put("Ventas", "compras_y_ventas/Menu.xhtml");
             roleToPageMap.put("Recursos Humanos", "/rh/dashboard.xhtml");
             roleToPageMap.put("Contabilidad", "/contabilidad/dashboard.xhtml");
-            roleToPageMap.put("Compras", "/compras/index.xhtml");
+            roleToPageMap.put("Compras", "compras_y_ventas/Menu.xhtml");
             roleToPageMap.put("Administrador", "/admin/index.xhtml");
 
             String redirectPage = roleToPageMap.get(rol);
