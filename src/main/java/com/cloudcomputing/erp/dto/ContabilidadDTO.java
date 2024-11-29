@@ -35,6 +35,7 @@ public class ContabilidadDTO {
     @SerializedName("descripcion")
     private String descripcion;
     
-   
+    @SerializedName("id_operacion")
+    private String idOperacion;
 
 }

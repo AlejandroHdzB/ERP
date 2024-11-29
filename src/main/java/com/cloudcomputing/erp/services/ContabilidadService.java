@@ -143,16 +143,19 @@ public class ContabilidadService {
 
                 System.out.println("Fecha ajustada y formateada como String sin zona horaria: " + fechaFormateada);
             }
+            if (contabilidadDTO.getIdOperacion() != null) {
+                document.put("id_operacion", new ObjectId(contabilidadDTO.getIdOperacion()));
+            }
 
             // Guardar el documento en la colección
-             boolean resultado = connection.addDocument("contabilidad", document);
+            boolean resultado = connection.addDocument("contabilidad", document);
 
             if (resultado) {
                 System.out.println("Movimiento agregado correctamente: " + contabilidadDTO);
-                 return true;
+                return true;
             } else {
                 System.err.println("Error al agregar el movimiento.");
-                 return false;
+                return false;
             }
         } catch (Exception e) {
             System.err.println("Error al agregar movimiento: " + e.getMessage());
@@ -176,11 +179,9 @@ public class ContabilidadService {
             String nombreArchivo = "BosquejoLibroDiario_" + fecha + ".pdf";
             try {
                 String ruta = GenerarPDF.generarPdfLibro(movDia, fecha, nombreArchivo);
-                System.out.println(ruta);
-                UploadServlet subir = new UploadServlet(); 
-                InputStream fileContent = Files.newInputStream(Paths.get(ruta)); 
-                subir.uploadFile(nombreArchivo, fileContent); 
-                //nominaDTO.setDocumentoNomina(nombreArchivo);
+                UploadServlet subir = new UploadServlet();
+                InputStream fileContent = Files.newInputStream(Paths.get(ruta));
+                subir.uploadFile(nombreArchivo, fileContent);
             } catch (Exception e) {
                 System.err.println("Error al generar el PDF de la nómina: " + e.getMessage());
                 return false;
@@ -216,11 +217,11 @@ public class ContabilidadService {
             // Generar CSV
             String nombreArchivoCSV = "BosquejoLibroDiario_" + fecha + ".csv";
             try {
-                 String ruta= GenerarCSV.generarCsvLibro(movDia, fecha, nombreArchivoCSV);
-                System.out.println(ruta);
-                UploadServlet subir = new UploadServlet(); 
-                InputStream fileContent = Files.newInputStream(Paths.get(ruta)); 
-                subir.uploadFile(nombreArchivoCSV, fileContent); 
+                String ruta = GenerarCSV.generarCsvLibro(movDia, fecha, nombreArchivoCSV);
+                //System.out.println(ruta);
+                UploadServlet subir = new UploadServlet();
+                InputStream fileContent = Files.newInputStream(Paths.get(ruta));
+                subir.uploadFile(nombreArchivoCSV, fileContent);
                 System.out.println("Archivo CSV subido exitosamente.");
             } catch (Exception e) {
                 System.err.println("Error al generar el CSV: " + e.getMessage());
@@ -275,9 +276,12 @@ public class ContabilidadService {
                 }
             }
 
-            if (doc.containsKey("id_compra_venta")) {
-                ObjectId objId = doc.getObjectId("id_compra_venta");
-                doc.put("id_compra_venta", objId.toHexString());
+            if (doc.containsKey("id_operacion")) {
+                // Obtener el ObjectId y convertirlo a String
+                ObjectId objId = doc.getObjectId("id_operacion");
+                String id = objId.toHexString();
+                // Aquí ya no es necesario hacer una consulta, solo agregamos el id como string
+                doc.put("id_operacion", id); // o el campo que quieras actualizar con el id en formato String
             }
 
         } catch (JsonSyntaxException e) {

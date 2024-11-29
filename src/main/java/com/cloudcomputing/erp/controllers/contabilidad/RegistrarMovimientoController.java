@@ -34,16 +34,17 @@ public class RegistrarMovimientoController {
 
 
     
-    public void agregarMovimientosNomina(String desc,double monto) {
+    public void agregarMovimientos(String desc,double monto,String id_Fk) {
   //Bancos Codigo 1110 
   //Sueldos y Salarios 5110
   
     transacciones.setFechaMov(new Date());  
-    transacciones.setTipoMov("Debe");     
+    transacciones.setTipoMov("Haber");     
     transacciones.setFechaAlta(LocalDate.now());   
     transacciones.setMonto(monto);          
     transacciones.setCuenta("5110");  
     transacciones.setDescripcion(desc); 
+    transacciones.setIdOperacion(id_Fk);
     
     boolean resultado=contabilidadService.agregarMovimiento(transacciones);   
     if(resultado)
