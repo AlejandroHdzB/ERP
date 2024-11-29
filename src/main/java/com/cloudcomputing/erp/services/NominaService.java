@@ -1,5 +1,6 @@
 package com.cloudcomputing.erp.services;
 
+import com.cloudcomputing.erp.controllers.contabilidad.RegistrarMovimientoController;
 import com.cloudcomputing.erp.database.Connection;
 import com.google.gson.*;
 import org.bson.Document;
@@ -8,6 +9,9 @@ import com.cloudcomputing.erp.dto.NominaDTO;
 import com.cloudcomputing.erp.dto.VistaNominaGeneral;
 import com.cloudcomputing.erp.utils.GenerarPDF;
 import com.cloudcomputing.erp.utils.UploadServlet;
+import com.jcraft.jsch.JSchException;
+import com.jcraft.jsch.SftpException;
+import java.io.IOException;
 import java.io.InputStream;
 import org.bson.types.ObjectId;
 import java.lang.reflect.Type;
@@ -63,7 +67,7 @@ public class NominaService {
                 subir.uploadFile(nombreArchivo, fileContent); 
                 System.out.println("PDF de nómina generado: " + ruta);
                 nominaDTO.setDocumentoNomina(nombreArchivo);
-            } catch (Exception e) {
+            } catch (JSchException | SftpException | IOException e) {
                 System.err.println("Error al generar el PDF de la nómina: " + e.getMessage());
                 return false;
             }
@@ -71,6 +75,10 @@ public class NominaService {
             String json = gson.toJson(nominaDTO);
             Document document = Document.parse(json);
             document.put("id_empleado", new ObjectId(nominaDTO.getIdEmpleado()));
+            
+            //Registro de la trasaccion en contabilidad
+            RegistrarMovimientoController mov = new RegistrarMovimientoController();
+            mov.agregarMovimientosNomina("Sueldos y Salarios", salarioNeto);
 
             boolean resultado = connection.addDocument(NAME_COLLECTION, document);
 

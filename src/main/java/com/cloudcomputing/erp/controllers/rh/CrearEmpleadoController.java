@@ -1,5 +1,7 @@
 package com.cloudcomputing.erp.controllers.rh;
 
+import com.cloudcomputing.erp.apiConnections.ApiValidacionEmpleados;
+import com.cloudcomputing.erp.apiConnections.RespuestaValidacionEmpleados;
 import com.cloudcomputing.erp.dto.EmpleadoDTO;
 import com.cloudcomputing.erp.dto.RolDTO;
 import com.cloudcomputing.erp.services.EmpleadoService;
@@ -44,12 +46,21 @@ public class CrearEmpleadoController implements Serializable {
     }
 
     public String crearEmpleado() {
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-    String password = String.format("%s-%s",
-            empleado.getFechaAlta().format(formatter),
-            empleado.getNombre());
-    empleado.setPwd(password);
-    empleadoService.agregarEmpleado(empleado);
-    return "dashboard.xhtml?faces-redirect=true";
-}
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String password = String.format("%s-%s",
+                empleado.getFechaAlta().format(formatter),
+                empleado.getNombre());
+        empleado.setPwd(password);
+        RespuestaValidacionEmpleados respuesta = ApiValidacionEmpleados.consultar(empleado.getEmail());
+        if (respuesta != null) {
+            if (respuesta.isSuccess()) {
+                empleadoService.agregarEmpleado(empleado);
+            }else{
+                System.err.println(respuesta.getMessage());
+            }
+        }else{
+            System.err.println("Error en la respuesta de la API de validación");
+        }
+        return "dashboard.xhtml?faces-redirect=true";
+    }
 }
