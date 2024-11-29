@@ -59,18 +59,13 @@ public class NominaService {
 
             // Generar PDF de la nómina
             String nombreArchivo = "nomina_" + nominaDTO.getIdEmpleado() + "_" + LocalDate.now() + ".pdf";
-            try {
-                String ruta = GenerarPDF.generarPdfNomina(nominaDTO, empleado, nombreArchivo);
-                System.out.println(ruta);
-                UploadServlet subir = new UploadServlet(); 
-                InputStream fileContent = Files.newInputStream(Paths.get(ruta)); 
-                subir.uploadFile(nombreArchivo, fileContent); 
-                System.out.println("PDF de nómina generado: " + ruta);
-                nominaDTO.setDocumentoNomina(nombreArchivo);
-            } catch (JSchException | SftpException | IOException e) {
-                System.err.println("Error al generar el PDF de la nómina: " + e.getMessage());
-                return false;
-            }
+            String ruta = GenerarPDF.generarPdfNomina(nominaDTO, empleado, nombreArchivo);
+            System.out.println(ruta);
+            //UploadServlet subir = new UploadServlet();
+            // InputStream fileContent = Files.newInputStream(Paths.get(ruta));
+            // subir.uploadFile(nombreArchivo, fileContent);
+            System.out.println("PDF de nómina generado: " + ruta);
+            nominaDTO.setDocumentoNomina(nombreArchivo);
 
             String json = gson.toJson(nominaDTO);
             Document document = Document.parse(json);
@@ -81,7 +76,7 @@ public class NominaService {
             
             //Registro de la trasaccion en contabilidad
             RegistrarMovimientoController mov = new RegistrarMovimientoController();
-            mov.agregarMovimientos("Sueldos y Salarios", salarioNeto, lastId);
+            mov.agregarMovimientosNomina("Sueldos y Salarios", salarioNeto,salarioBruto,deducciones, lastId);
 
             if (resultado) {
                 System.out.println("Nómina agregada correctamente: " + nominaDTO);
