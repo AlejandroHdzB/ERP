@@ -75,12 +75,13 @@ public class NominaService {
             String json = gson.toJson(nominaDTO);
             Document document = Document.parse(json);
             document.put("id_empleado", new ObjectId(nominaDTO.getIdEmpleado()));
+
+            boolean resultado = connection.addDocument(NAME_COLLECTION, document);
+            String lastId = connection.getLastInsertedDocumentId(NAME_COLLECTION);
             
             //Registro de la trasaccion en contabilidad
             RegistrarMovimientoController mov = new RegistrarMovimientoController();
-            mov.agregarMovimientosNomina("Sueldos y Salarios", salarioNeto);
-
-            boolean resultado = connection.addDocument(NAME_COLLECTION, document);
+            mov.agregarMovimientos("Sueldos y Salarios", salarioNeto, lastId);
 
             if (resultado) {
                 System.out.println("Nómina agregada correctamente: " + nominaDTO);

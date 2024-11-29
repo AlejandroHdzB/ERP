@@ -170,4 +170,20 @@ public class Connection {
             System.out.println(doc.toJson());
         }
     }
+
+    public String getLastInsertedDocumentId(String collectionName) {
+        try {
+            MongoCollection<Document> collection = database.getCollection(collectionName);
+            Document lastDocument = collection.find().sort(new Document("_id", -1)).first();
+            if (lastDocument != null) {
+                return lastDocument.getObjectId("_id").toHexString();
+            } else {
+                System.out.println("No se encontraron documentos en la colección.");
+                return null;
+            }
+        } catch (Exception e) {
+            System.err.println("Error al obtener el último documento insertado: " + e.getMessage());
+            return null;
+        }
+    }
 }
