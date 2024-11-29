@@ -32,7 +32,7 @@ public class GenerarPDF {
 
             // Añadir el logo de la empresa
             try {
-                Image logo = Image.getInstance("C:/Users/jessey/Downloads/logo.png");  // Cambia la ruta al logo de tu empresa
+                Image logo = Image.getInstance("http://10.128.9.28/icons/ERP_Contabilidad/logo.png");  // Cambia la ruta al logo de tu empresa
                 logo.scaleToFit(150, 150);  // Ajustar el tamaño del logo
                 logo.setAlignment(Element.ALIGN_CENTER);
                 logo.setSpacingAfter(20);
@@ -176,7 +176,7 @@ public class GenerarPDF {
 
             // Añadir el logo de la empresa
             try {
-                Image logo = Image.getInstance("C:/Users/jessey/Downloads/logo.png");
+                Image logo = Image.getInstance("http://10.128.9.28/icons/ERP_Contabilidad/logo.png");
                 logo.scaleToFit(150, 150);
                 logo.setAlignment(Element.ALIGN_CENTER);
                 logo.setSpacingAfter(20);

@@ -25,6 +25,7 @@ public class NominaGeneralController implements Serializable {
         listaNominas = nominaService.obtenerVistaNominaGeneral();
         listaNominas.stream().forEach(nomina -> {
             String url = "http://" + SftpConfig.SFTP_HOST +"/icons"+ "/" + SftpConfig.REMOTE_DIR + nomina.getDocumentoNomina();
+            System.out.println(url);
             nomina.setDocumentoNomina(url);
         });
     }
