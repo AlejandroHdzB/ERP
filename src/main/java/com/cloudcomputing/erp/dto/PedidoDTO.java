@@ -10,12 +10,13 @@ import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.bson.types.ObjectId;
 
 @Getter
 @Setter
 @NoArgsConstructor
 public class PedidoDTO {
-    private String idPedido;
+    private ObjectId id; // Usado para manejar el ObjectID generado automáticamente por MongoDB
     private LocalDate fechaPedido;
     private String estatus;
     private double costoOperacion;
