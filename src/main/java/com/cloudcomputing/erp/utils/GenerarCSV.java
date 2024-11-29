@@ -23,7 +23,7 @@ public class GenerarCSV {
             // Crear el archivo CSV
             try (PrintWriter writer = new PrintWriter(new FileWriter(ruta.toString()))) {
                 // Escribir encabezados
-                writer.println("Fecha,Descripción,Cuenta,Haber,Debe");
+                writer.println("Fecha,ID Movimiento,Descripción,Cuenta,Haber,Debe");
 
                 // Escribir cada registro
                 for (ContabilidadDTO movimiento : movDia) {
@@ -35,11 +35,13 @@ public class GenerarCSV {
                         haber = String.format("%.2f", movimiento.getMonto());
                     } else if ("Debe".equalsIgnoreCase(movimiento.getTipoMov())) {
                         debe = String.format("%.2f", movimiento.getMonto());
+                        System.out.println(debe);
                     }
 
                     // Escribir fila en el CSV
-                    writer.printf("%s,%s,%s,%s,%s%n",
+                    writer.printf("%s,%s,%s,%s,%s,%s%n",
                             movimiento.getFechaAlta(),
+                            movimiento.getIdTransaccion(),
                             movimiento.getDescripcion(),
                             movimiento.getCuenta(),
                             haber,

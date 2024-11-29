@@ -34,28 +34,30 @@ public class RegistrarMovimientoController {
 
 
     
-    public void crearMovimiento() {
-
-       // Genera un UUID para el idTransaccion antes de agregarlo
-    /*Prueba Movimeinto Venta
-    // Asignar valores estáticos a los demás campos
-    transacciones.setFechaMov(new Date());  // Fecha actual (puedes asignar una fecha específica si es necesario)
-    transacciones.setTipo_Mov("Haber");     // Ejemplo de tipo de movimiento
-    transacciones.setMonto(1000.0);          // Monto estático
-    transacciones.setCuenta("1234567890");  // Número de cuenta estático
-    transacciones.setDescripcion("Pago de factura");  // Descripción estática*/
-    //Prueba Movimiento Compra
-    transacciones.setFechaMov(new Date());  // Fecha actual (puedes asignar una fecha específica si es necesario)
-    transacciones.setTipoMov("Debe");     // Ejemplo de tipo de movimiento
-    transacciones.setFechaAlta(LocalDate.now());   // Ejemplo de tipo de movimiento
-    transacciones.setMonto(1000.0);          // Monto estático
-    transacciones.setCuenta("1234567890");  // Número de cuenta estático
-   transacciones.setDescripcion("Pago a Proveedores"); 
-
-    contabilidadService.agregarMovimiento(transacciones);
+    public void agregarMovimientos(String desc,double monto,String id_Fk) {
+  //Bancos Codigo 1110 
+  //Sueldos y Salarios 5110
+  
+    transacciones.setFechaMov(new Date());  
+    transacciones.setTipoMov("Haber");     
+    transacciones.setFechaAlta(LocalDate.now());   
+    transacciones.setMonto(monto);          
+    transacciones.setCuenta("5110");  
+    transacciones.setDescripcion(desc); 
+    transacciones.setIdOperacion(id_Fk);
     
-    //return "dashboard.xhtml?faces-redirect=true";
+    boolean resultado=contabilidadService.agregarMovimiento(transacciones);   
+    if(resultado)
+    {
+       System.out.println("Se ha agregado la nomina sin ningun inconveniente");
+
+    }else{
+        System.out.println("Hubo un problema al Agregar el Asiento Contable");
+    }
      }
+    
+    
+    
     public class Movimiento {
     private ObjectId id;
     

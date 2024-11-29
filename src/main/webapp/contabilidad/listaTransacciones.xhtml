@@ -84,15 +84,13 @@
         <div class="container">
             <h1>Lista de Transacciones</h1>
 
+
             <!-- Filtro por fecha -->
             <div class="form-group">
                 <label for="filterDate" class="form-label">Filtrar por fecha:</label>
                 <input type="date" id="filterDate" class="form-control" />
             </div>
 
-            <h:form>
-                <h:commandButton value="Crear Movimiento" action="#{registrarMovimientoController.crearMovimiento}" styleClass="btn btn-primary" />
-            </h:form>
 
             <div class="search-container">
                 <label for="search" class="form-label">Buscar:</label>
@@ -104,6 +102,7 @@
                     <thead>
                         <tr>
                             <th>Fecha</th>
+                            <th>ID Movimiento</th>
                             <th>Descripcion</th>
                             <th>Cuenta</th>
                             <th>Haber</th>
@@ -114,11 +113,13 @@
                         <!-- Aquí las filas de las transacciones se cargarán dinámicamente -->
                         <ui:repeat value="#{listaTransaccionesController.transacciones}" var="transaccion">
                             <tr class="transaction-row">
+
                                 <td>
                                     <h:outputText value="#{transaccion.fechaMov}">
                                         <f:convertDateTime pattern="yyyy-MM-dd " />
                                     </h:outputText>
                                 </td>
+                                <td>#{transaccion.idTransaccion}</td>
                                 <td>#{transaccion.descripcion}</td>
                                 <td>#{transaccion.cuenta}</td>
                                 <td>

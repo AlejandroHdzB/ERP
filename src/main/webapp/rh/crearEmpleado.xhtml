@@ -157,6 +157,12 @@
                     <h:outputLabel for="noCuenta" value="Número de Cuenta" class="form-label" />
                     <h:inputText id="noCuenta" value="#{crearEmpleadoController.empleado.noCuenta}" class="form-control" />
                 </div>
+                
+                <!-- NSS -->
+                <div class="col-md-6">
+                    <h:outputLabel for="nss" value="NSS" class="form-label" />
+                    <h:inputText id="nss" value="#{crearEmpleadoController.empleado.nss}" class="form-control" />
+                </div>
 
                 <!-- Rol -->
                 <div class="col-md-6">
@@ -179,7 +185,10 @@
             </div>
 
             <!-- Botón para Crear Empleado -->
-            <h:commandButton value="Crear Empleado" action="#{crearEmpleadoController.crearEmpleado()}" styleClass="btn btn-primary" />
+            <h:commandButton value="Crear Empleado" action="#{crearEmpleadoController.crearEmpleado()}" styleClass="btn btn-primary">
+                <f:ajax execute="@form" render="@form"/>
+            </h:commandButton>
+
         </h:form>
     </div>
 

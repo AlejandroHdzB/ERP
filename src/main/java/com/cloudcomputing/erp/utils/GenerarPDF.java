@@ -12,7 +12,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 /**
  *
@@ -220,13 +219,18 @@ public class GenerarPDF {
             pdfDocument.add(nominaInfo);
 
             // Crear tabla
-            PdfPTable nominaTable = new PdfPTable(5);
+            PdfPTable nominaTable = new PdfPTable(6);
             nominaTable.setWidthPercentage(100);
             nominaTable.setSpacingBefore(10f);
             nominaTable.setSpacingAfter(20f);
 
             // Encabezados
             cell = new PdfPCell(new Phrase("Fecha", headerFont));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            nominaTable.addCell(cell);
+            
+            cell = new PdfPCell(new Phrase("ID Movimiento", headerFont));
             cell.setHorizontalAlignment(Element.ALIGN_CENTER);
             cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
             nominaTable.addCell(cell);
@@ -258,6 +262,10 @@ public class GenerarPDF {
                 String fechaFormateada = sdf.format(movimiento.getFechaMov());
 
                 cell = new PdfPCell(new Phrase(fechaFormateada, normalFont));
+                cell.setPadding(5);
+                nominaTable.addCell(cell);
+                
+                cell = new PdfPCell(new Phrase(movimiento.getIdTransaccion(), normalFont));
                 cell.setPadding(5);
                 nominaTable.addCell(cell);
 

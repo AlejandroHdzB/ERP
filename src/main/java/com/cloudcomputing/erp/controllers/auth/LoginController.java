@@ -41,7 +41,7 @@ public class LoginController {
             Map<String, String> roleToPageMap = new HashMap<>();
             roleToPageMap.put("Ventas", "/ventas/index.xhtml");
             roleToPageMap.put("Recursos Humanos", "/rh/dashboard.xhtml");
-            roleToPageMap.put("Contabilidad", "/contabilidad/index.xhtml");
+            roleToPageMap.put("Contabilidad", "/contabilidad/dashboard.xhtml");
             roleToPageMap.put("Compras", "/compras/index.xhtml");
             roleToPageMap.put("Administrador", "/admin/index.xhtml");
 
