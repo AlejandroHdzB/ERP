@@ -22,12 +22,9 @@ public class GenerarPDF {
 
     public static String generarPdfNomina(NominaDTO nominaDTO, EmpleadoDTO empleadoDTO, String nombreArchivo) {
         try {
-            Path ruta = Paths.get("C:/Users/jessey/JesusPdf", nombreArchivo);
+            Path ruta = Paths.get("", nombreArchivo);
 
-            // Crear la carpeta si no existe
-            if (!Files.exists(ruta.getParent())) {
-                Files.createDirectories(ruta.getParent());
-            }
+        
 
             // Crear el documento PDF
             Document pdfDocument = new Document();
@@ -170,13 +167,9 @@ public class GenerarPDF {
 
     public static String generarPdfLibro(java.util.List<ContabilidadDTO> movDia, String fecha, String nombreArchivo) {
         try {
-            Path ruta = Paths.get("C:/Users/jessey/JesusPdf", nombreArchivo);
+            Path ruta = Paths.get("", nombreArchivo);
 
-            // Crear la carpeta si no existe
-            if (!Files.exists(ruta.getParent())) {
-                Files.createDirectories(ruta.getParent());
-            }
-
+ 
             // Crear el documento PDF
             Document pdfDocument = new Document();
             PdfWriter.getInstance(pdfDocument, Files.newOutputStream(ruta));

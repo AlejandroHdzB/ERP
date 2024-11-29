@@ -13,14 +13,12 @@ import java.util.List;
 public class GenerarCSV {
 
     public static String generarCsvLibro(List<ContabilidadDTO> movDia, String fecha, String nombreArchivoCSV) throws Exception {
+ 
         try {
             // Definir la ruta del archivo
-            Path ruta = Paths.get("C:/Users/jessey/JesusPdf", nombreArchivoCSV);
+            Path ruta = Paths.get("", nombreArchivoCSV);
 
-            // Crear la carpeta si no existe
-            if (!Files.exists(ruta.getParent())) {
-                Files.createDirectories(ruta.getParent());
-            }
+      
 
             // Crear el archivo CSV
             try (PrintWriter writer = new PrintWriter(new FileWriter(ruta.toString()))) {
@@ -47,10 +45,13 @@ public class GenerarCSV {
                             haber,
                             debe);
                 }
+             
             }
 
             // Devolver la ruta del archivo generado
             System.out.println("CSV generado correctamente: " + ruta.toString());
+            
+            
             return ruta.toString();
 
         } catch (IOException e) {

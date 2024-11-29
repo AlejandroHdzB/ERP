@@ -13,7 +13,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
-
+import com.cloudcomputing.erp.utils.SftpConfig;
 @Named
 @RequestScoped
 public class NominaGeneralController implements Serializable {
@@ -23,33 +23,14 @@ public class NominaGeneralController implements Serializable {
     public NominaGeneralController() {
         nominaService = new NominaService();
         listaNominas = nominaService.obtenerVistaNominaGeneral();
+        listaNominas.stream().forEach(nomina -> {
+            String url = "http://" + SftpConfig.SFTP_HOST +"/icons"+ "/" + SftpConfig.REMOTE_DIR + nomina.getDocumentoNomina();
+            nomina.setDocumentoNomina(url);
+        });
     }
 
     public List<VistaNominaGeneral> getListaNominas() {
         return listaNominas;
-    }
-
-    public void descargarNomina(VistaNominaGeneral nomina) {
-        try {
-            // Lógica para descargar el archivo PDF
-            String rutaArchivo = nomina.getDocumentoNomina();
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            ExternalContext externalContext = facesContext.getExternalContext();
-            externalContext.responseReset();
-            externalContext.setResponseContentType("application/pdf");
-            externalContext.setResponseHeader("Content-Disposition", "attachment;filename=\"" + nomina.getIdEmpleado() + "_nomina.pdf\"");
-            try (InputStream input = Files.newInputStream(Paths.get(rutaArchivo));
-                 OutputStream output = externalContext.getResponseOutputStream()) {
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = input.read(buffer)) != -1) {
-                    output.write(buffer, 0, bytesRead);
-                }
-            }
-            facesContext.responseComplete();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
     
     public String verNominaPorEmpleado(){

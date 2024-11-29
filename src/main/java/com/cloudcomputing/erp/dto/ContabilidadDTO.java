@@ -34,5 +34,7 @@ public class ContabilidadDTO {
     
     @SerializedName("descripcion")
     private String descripcion;
+    
+    private String documentoURL;
 
 }

@@ -4,6 +4,7 @@ import com.cloudcomputing.erp.database.Connection;
 import com.cloudcomputing.erp.dto.ContabilidadDTO;
 import com.cloudcomputing.erp.utils.GenerarCSV;
 import com.cloudcomputing.erp.utils.GenerarPDF;
+import com.cloudcomputing.erp.utils.UploadServlet;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -13,7 +14,10 @@ import com.google.gson.JsonPrimitive;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
 import com.google.gson.JsonSyntaxException;
+import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -169,7 +173,10 @@ public class ContabilidadService {
             String nombreArchivo = "BosquejoLibroDiario_" + fecha + ".pdf";
             try {
                 String ruta = GenerarPDF.generarPdfLibro(movDia, fecha, nombreArchivo);
-                System.out.println("PDF de nómina generado: " + ruta);
+                System.out.println(ruta);
+                UploadServlet subir = new UploadServlet(); 
+                InputStream fileContent = Files.newInputStream(Paths.get(ruta)); 
+                subir.uploadFile(nombreArchivo, fileContent); 
                 //nominaDTO.setDocumentoNomina(nombreArchivo);
             } catch (Exception e) {
                 System.err.println("Error al generar el PDF de la nómina: " + e.getMessage());
@@ -206,8 +213,12 @@ public class ContabilidadService {
             // Generar CSV
             String nombreArchivoCSV = "BosquejoLibroDiario_" + fecha + ".csv";
             try {
-               String ruta= GenerarCSV.generarCsvLibro(movDia, fecha, nombreArchivoCSV);
-                System.out.println("CSV generado: " + nombreArchivoCSV);
+                 String ruta= GenerarCSV.generarCsvLibro(movDia, fecha, nombreArchivoCSV);
+                System.out.println(ruta);
+                UploadServlet subir = new UploadServlet(); 
+                InputStream fileContent = Files.newInputStream(Paths.get(ruta)); 
+                subir.uploadFile(nombreArchivoCSV, fileContent); 
+                System.out.println("Archivo CSV subido exitosamente.");
             } catch (Exception e) {
                 System.err.println("Error al generar el CSV: " + e.getMessage());
                 return false;

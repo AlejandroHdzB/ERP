@@ -7,8 +7,12 @@ import com.cloudcomputing.erp.dto.EmpleadoDTO;
 import com.cloudcomputing.erp.dto.NominaDTO;
 import com.cloudcomputing.erp.dto.VistaNominaGeneral;
 import com.cloudcomputing.erp.utils.GenerarPDF;
+import com.cloudcomputing.erp.utils.UploadServlet;
+import java.io.InputStream;
 import org.bson.types.ObjectId;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -53,6 +57,10 @@ public class NominaService {
             String nombreArchivo = "nomina_" + nominaDTO.getIdEmpleado() + "_" + LocalDate.now() + ".pdf";
             try {
                 String ruta = GenerarPDF.generarPdfNomina(nominaDTO, empleado, nombreArchivo);
+                System.out.println(ruta);
+                UploadServlet subir = new UploadServlet(); 
+                InputStream fileContent = Files.newInputStream(Paths.get(ruta)); 
+                subir.uploadFile(nombreArchivo, fileContent); 
                 System.out.println("PDF de nómina generado: " + ruta);
                 nominaDTO.setDocumentoNomina(nombreArchivo);
             } catch (Exception e) {
@@ -87,7 +95,7 @@ public class NominaService {
             connection.connect();
             List<Document> documentos = connection.getCollectionData(NAME_COLLECTION);
             for (Document documento : documentos) {
-                ObjectId objNom = documento.getObjectId("id_empleado");
+                ObjectId objNom = documento.getObjectId("_id");
                 String idNomina = objNom.toHexString();
                 documento.put("_id", idNomina);
                 
@@ -124,7 +132,7 @@ public class NominaService {
                     nominaGeneral.setSalarioNeto(nomina.getSalarioNeto());
                     nominaGeneral.setFechaPago(nomina.getFechaPago());
                     nominaGeneral.setDeducciones(nomina.getDeducciones());
-                    nominaGeneral.setDocumentoNomina(nomina.getIdEmpleado());
+                    nominaGeneral.setDocumentoNomina(nomina.getDocumentoNomina());
                     listaNominas.add(nominaGeneral);
                 }
             }

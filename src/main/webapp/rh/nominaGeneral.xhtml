@@ -134,7 +134,7 @@
                                 <td>$#{nomina.deducciones}</td>
                                 <td>$#{nomina.salarioNeto}</td>
                                 <td>
-                                    <h:commandLink value="Descargar PDF" action="#{nominaGeneralController.descargarNomina(nomina)}" />
+                                    <h:outputLink value="#{nomina.documentoNomina}" rendered="#{not empty nominaGeneralController.listaNominas}" target="_blank"> Ver PDF </h:outputLink>
                                 </td>
                             </tr>
                         </ui:repeat>

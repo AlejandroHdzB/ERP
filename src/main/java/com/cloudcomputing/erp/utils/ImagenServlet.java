@@ -1,6 +1,5 @@
 package com.cloudcomputing.erp.utils;
 
-
 import com.jcraft.jsch.ChannelSftp;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
@@ -17,9 +16,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-@WebServlet("/imagen")
+//@WebServlet("/imagen")
 public class ImagenServlet extends HttpServlet {
-    private static final String REMOTE_FILE_PATH = SftpConfig.REMOTE_DIR+"logo.png";
+    private static final String REMOTE_FILE_PATH = SftpConfig.REMOTE_DIR+"WhatsApp Image 2024-10-25 at 12.53.31 PM.jpeg";
     String arr[]={
         SftpConfig.REMOTE_DIR+"Presentacion_ServidorArchivos_30_10_2024.jpeg",
         SftpConfig.REMOTE_DIR+"WhatsApp Image 2024-10-25 at 12.53.31 PM.jpeg"

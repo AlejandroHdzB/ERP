@@ -39,7 +39,7 @@ public class UploadServlet extends HttpServlet {
         response.getWriter().println(message); // Enviar el mensaje de vuelta
     }
 
-    private void uploadFile(String fileName, InputStream fileContent) throws JSchException, SftpException, IOException {
+    public void uploadFile(String fileName, InputStream fileContent) throws JSchException, SftpException, IOException {
         JSch jsch = new JSch();
         Session session = jsch.getSession(SftpConfig.SFTP_USER, SftpConfig.SFTP_HOST, SftpConfig.SFTP_PORT);
         session.setPassword(SftpConfig.SFTP_PASSWORD);
