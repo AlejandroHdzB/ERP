@@ -9,8 +9,11 @@ import com.cloudcomputing.erp.dto.DetallesPaqueteDTO;
 import com.cloudcomputing.erp.dto.DimensionesDTO;
 import lombok.Data;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ProductoDTO {
     private String idProducto;
     private String nombre;

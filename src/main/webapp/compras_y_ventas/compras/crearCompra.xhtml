@@ -5,7 +5,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
+
 <h:head>
     <title>Crear Compra</title>
     <style>
@@ -57,41 +59,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 </h:head>
 <h:body>
     <div class="container">
-        <h1>Registro de Compra</h1>
-        <h:form>
+        <h:form id="compraForm">
+            <h1>Crear Compra</h1>
+            
             <div class="form-group">
-                <h:outputLabel for="idcompra" class="form-label" value="ID de Compra:" />
-                <h:inputText id="idcompra" value="#{crearCompraController.compra.idcompra}" required="true" />
+                <h:outputLabel for="idProducto" value="ID Producto:" class="form-label" />
+                <h:inputText id="idProducto" value="#{compraController.compraDTO.idproducto}" required="true" />
             </div>
 
             <div class="form-group">
-                <h:outputLabel for="idproducto" class="form-label" value="ID de Producto:" />
-                <h:inputText id="idproducto" value="#{crearCompraController.compra.idproducto}" required="true" />
+                <h:outputLabel for="cantidad" value="Cantidad:" class="form-label" />
+                <h:inputText id="cantidad" value="#{compraController.compraDTO.detalleproducto.cantidad}" required="true" />
             </div>
 
-            <div class="form-group">
-                <h:outputLabel for="fechacompra" class="form-label" value="Fecha de Compra:" />
-                <h:inputText id="fechacompra" value="#{crearCompraController.compra.fechacompra}" required="true" />
-            </div>
-
-            <div class="form-group">
-                <h:outputLabel for="montoTotal" class="form-label" value="Monto Total:" />
-                <h:inputText id="montoTotal" value="#{crearCompraController.compra.montoTotal}" required="true" />
-            </div>
-
-            <div class="form-group">
-                <h:outputLabel for="cantidad" class="form-label" value="Cantidad:" />
-                <h:inputText id="cantidad" value="#{crearCompraController.compra.detalleproducto.cantidad}" required="true" />
-            </div>
-
-            <div class="form-group">
-                <h:outputLabel for="precioUnitario" class="form-label" value="Precio Unitario:" />
-                <h:inputText id="precioUnitario" value="#{crearCompraController.compra.detalleproducto.precio_unitario}" required="true" />
-            </div>
-
-            <h:commandButton value="Registrar Compra" action="#{crearCompraController.crearCompra}" class="btn" />
+            <h:commandButton value="Crear Compra" action="#{compraController.crearCompra}" class="btn" />
         </h:form>
     </div>
 </h:body>
 </html>
-

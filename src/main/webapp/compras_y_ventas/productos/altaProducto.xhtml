@@ -5,7 +5,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
+
 <h:head>
     <title>Crear Producto</title>
     <style>
@@ -57,46 +59,46 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 </h:head>
 <h:body>
     <div class="container">
-        <h1>Registro de Producto</h1>
-        <h:form>
+        <h:form id="productoForm">
+            <h1>Crear Producto</h1>
+            
             <div class="form-group">
-                <h:outputLabel for="idProducto" class="form-label" value="ID de Producto:" />
-                <h:inputText id="idProducto" value="#{altaProductoController.producto.idProducto}" required="true" />
+                <h:outputLabel for="idProducto" value="ID Producto:" class="form-label" />
+                <h:inputText id="idProducto" value="#{productoController.productoDTO.idProducto}" required="true" />
             </div>
 
             <div class="form-group">
-                <h:outputLabel for="nombre" class="form-label" value="Nombre:" />
-                <h:inputText id="nombre" value="#{altaProductoController.producto.nombre}" required="true" />
+                <h:outputLabel for="nombre" value="Nombre:" class="form-label" />
+                <h:inputText id="nombre" value="#{productoController.productoDTO.nombre}" required="true" />
             </div>
 
             <div class="form-group">
-                <h:outputLabel for="precio" class="form-label" value="Precio:" />
-                <h:inputText id="precio" value="#{altaProductoController.producto.precio}" required="true" />
+                <h:outputLabel for="precio" value="Precio:" class="form-label" />
+                <h:inputText id="precio" value="#{productoController.productoDTO.precio}" required="true" />
             </div>
 
             <div class="form-group">
-                <h:outputLabel for="alto" class="form-label" value="Dimensiones (Alto):" />
-                <h:inputText id="alto" value="#{altaProductoController.producto.dimensiones.alto}" required="true" />
+                <h:outputLabel for="alto" value="Alto (Dimensiones):" class="form-label" />
+                <h:inputText id="alto" value="#{productoController.productoDTO.dimensiones.alto}" required="true" />
             </div>
 
             <div class="form-group">
-                <h:outputLabel for="ancho" class="form-label" value="Dimensiones (Ancho):" />
-                <h:inputText id="ancho" value="#{altaProductoController.producto.dimensiones.ancho}" required="true" />
+                <h:outputLabel for="ancho" value="Ancho (Dimensiones):" class="form-label" />
+                <h:inputText id="ancho" value="#{productoController.productoDTO.dimensiones.ancho}" required="true" />
             </div>
 
             <div class="form-group">
-                <h:outputLabel for="largo" class="form-label" value="Dimensiones (Largo):" />
-                <h:inputText id="largo" value="#{altaProductoController.producto.dimensiones.largo}" required="true" />
+                <h:outputLabel for="largo" value="Largo (Dimensiones):" class="form-label" />
+                <h:inputText id="largo" value="#{productoController.productoDTO.dimensiones.largo}" required="true" />
             </div>
 
             <div class="form-group">
-                <h:outputLabel for="capacidad" class="form-label" value="Capacidad:" />
-                <h:inputText id="capacidad" value="#{altaProductoController.producto.capacidad}" required="true" />
+                <h:outputLabel for="capacidad" value="Capacidad:" class="form-label" />
+                <h:inputText id="capacidad" value="#{productoController.productoDTO.capacidad}" required="true" />
             </div>
 
-            <h:commandButton value="Registrar Producto" action="#{altaProductoController.crearProducto}" class="btn" />
+            <h:commandButton value="Crear Producto" action="#{productoController.crearProducto}" class="btn" />
         </h:form>
     </div>
 </h:body>
 </html>
-
